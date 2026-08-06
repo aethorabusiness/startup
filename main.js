@@ -288,7 +288,7 @@ window.selectWizardOption = function(val, step) {
   renderWizardStep(step + 1);
 };
 
-window.handleWizardFinalSubmit = function(e) {
+window.handleWizardFinalSubmit = async function(e) {
   if (e) e.preventDefault();
   const nameInput = document.getElementById('wiz-name');
   const phoneInput = document.getElementById('wiz-phone');
@@ -301,41 +301,64 @@ window.handleWizardFinalSubmit = function(e) {
   const company = companyInput ? companyInput.value : 'N/A';
 
   const answers = window.userAnswersStore || {};
-  const emailSubject = `New Project Inquiry from ${name} (${company || 'Aethora Client'})`;
-  const emailBody = `
-New Project Inquiry Submission Details:
-------------------------------------------
-Name: ${name}
-WhatsApp / Phone: ${phone}
-Email: ${email}
-Company: ${company}
+  
+  const wizardOptionsGrid = document.getElementById('wizard-options-grid');
+  if (wizardOptionsGrid) {
+    wizardOptionsGrid.innerHTML = `
+      <div style="text-align: center; padding: 32px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 20px; color: #1e4ed8;">
+        <div style="font-size: 3.5rem; margin-bottom: 12px;">⚡</div>
+        <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 8px;">Sending Inquiry to Aethora...</h3>
+        <p style="font-size: 0.95rem; line-height: 1.6;">Dispatched your project survey answers directly to <strong>info@aethora.in</strong>...</p>
+      </div>
+    `;
+  }
 
-Guided Project Survey Choices:
-- Goal / Solution: ${answers.step_1 || 'Not specified'}
-- Business Type: ${answers.step_2 || 'Not specified'}
-- Current Stage: ${answers.step_3 || 'Not specified'}
-- Biggest Challenge: ${answers.step_4 || 'Not specified'}
-- Start Timeline: ${answers.step_5 || 'Not specified'}
-- Comfortable Budget Range: ${answers.step_6 || 'Not specified'}
+  // Construct structured payload for FormSubmit API
+  const formData = {
+    _subject: `New Project Inquiry from ${name} (${company || 'Aethora Client'})`,
+    _replyto: email,
+    _template: 'table',
+    Client_Name: name,
+    WhatsApp_Phone: phone,
+    Client_Email: email,
+    Company_Name: company,
+    Project_Goal: answers.step_1 || 'Not specified',
+    Business_Type: answers.step_2 || 'Not specified',
+    Current_Stage: answers.step_3 || 'Not specified',
+    Biggest_Challenge: answers.step_4 || 'Not specified',
+    Start_Timeline: answers.step_5 || 'Not specified',
+    Budget_Range: answers.step_6 || 'Not specified'
+  };
 
-------------------------------------------
-Submitted via Aethora Project Check Wizard
-  `.trim();
+  try {
+    // Send form data directly over HTTP API to info@aethora.in
+    await fetch('https://formsubmit.co/ajax/info@aethora.in', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+  } catch (err) {
+    console.warn("FormSubmit HTTP API notice:", err);
+  }
 
+  // Backup mailto launch
+  const emailSubject = `New Project Inquiry from ${name}`;
+  const emailBody = `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nCompany: ${company}\nGoal: ${answers.step_1}\nBusiness: ${answers.step_2}\nStage: ${answers.step_3}\nChallenge: ${answers.step_4}\nTimeline: ${answers.step_5}\nBudget: ${answers.step_6}`;
   const mailtoUrl = `mailto:info@aethora.in?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
   
-  // Trigger direct mail client launch
   setTimeout(() => {
     window.location.href = mailtoUrl;
-  }, 300);
+  }, 200);
 
-  const wizardOptionsGrid = document.getElementById('wizard-options-grid');
   if (wizardOptionsGrid) {
     wizardOptionsGrid.innerHTML = `
       <div style="text-align: center; padding: 32px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 20px; color: #166534;">
         <div style="font-size: 3.5rem; margin-bottom: 12px;">🎉</div>
         <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 8px;">Thank You, ${name}!</h3>
-        <p style="font-size: 0.95rem; line-height: 1.6;">Your project direction query details have been generated and dispatched directly to <strong>info@aethora.in</strong>!</p>
+        <p style="font-size: 0.95rem; line-height: 1.6;">Your project survey & contact details have been successfully sent to <strong>info@aethora.in</strong>!</p>
         <p style="font-size: 0.85rem; color: #15803d; margin-top: 8px;">Our engineering team will review your project roadmap and email you back at <strong>${email}</strong> within 2 business hours.</p>
       </div>
     `;
