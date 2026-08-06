@@ -291,17 +291,52 @@ window.selectWizardOption = function(val, step) {
 window.handleWizardFinalSubmit = function(e) {
   if (e) e.preventDefault();
   const nameInput = document.getElementById('wiz-name');
+  const phoneInput = document.getElementById('wiz-phone');
   const emailInput = document.getElementById('wiz-email');
-  const name = nameInput ? nameInput.value : 'Client';
-  const email = emailInput ? emailInput.value : 'your email';
-  const wizardOptionsGrid = document.getElementById('wizard-options-grid');
+  const companyInput = document.getElementById('wiz-company');
 
+  const name = nameInput ? nameInput.value : 'Client';
+  const phone = phoneInput ? phoneInput.value : 'N/A';
+  const email = emailInput ? emailInput.value : 'N/A';
+  const company = companyInput ? companyInput.value : 'N/A';
+
+  const answers = window.userAnswersStore || {};
+  const emailSubject = `New Project Inquiry from ${name} (${company || 'Aethora Client'})`;
+  const emailBody = `
+New Project Inquiry Submission Details:
+------------------------------------------
+Name: ${name}
+WhatsApp / Phone: ${phone}
+Email: ${email}
+Company: ${company}
+
+Guided Project Survey Choices:
+- Goal / Solution: ${answers.step_1 || 'Not specified'}
+- Business Type: ${answers.step_2 || 'Not specified'}
+- Current Stage: ${answers.step_3 || 'Not specified'}
+- Biggest Challenge: ${answers.step_4 || 'Not specified'}
+- Start Timeline: ${answers.step_5 || 'Not specified'}
+- Comfortable Budget Range: ${answers.step_6 || 'Not specified'}
+
+------------------------------------------
+Submitted via Aethora Project Check Wizard
+  `.trim();
+
+  const mailtoUrl = `mailto:info@aethora.in?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+  
+  // Trigger direct mail client launch
+  setTimeout(() => {
+    window.location.href = mailtoUrl;
+  }, 300);
+
+  const wizardOptionsGrid = document.getElementById('wizard-options-grid');
   if (wizardOptionsGrid) {
     wizardOptionsGrid.innerHTML = `
       <div style="text-align: center; padding: 32px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 20px; color: #166534;">
         <div style="font-size: 3.5rem; margin-bottom: 12px;">🎉</div>
         <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 8px;">Thank You, ${name}!</h3>
-        <p style="font-size: 0.95rem; line-height: 1.6;">Your custom project direction has been generated and sent to our lead engineering team. We will email your roadmap to <strong>${email}</strong> within 2 business hours!</p>
+        <p style="font-size: 0.95rem; line-height: 1.6;">Your project direction query details have been generated and dispatched directly to <strong>info@aethora.in</strong>!</p>
+        <p style="font-size: 0.85rem; color: #15803d; margin-top: 8px;">Our engineering team will review your project roadmap and email you back at <strong>${email}</strong> within 2 business hours.</p>
       </div>
     `;
   }

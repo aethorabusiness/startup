@@ -773,13 +773,21 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: var(--text-main);
-  font-family: var(--font-heading);
-  font-size: 1.6rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  min-width: 220px;
+  min-width: 200px;
   flex-shrink: 0;
+}
+
+.brand-logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.4));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.brand-logo-img:hover {
+  transform: scale(1.04);
+  filter: drop-shadow(0 0 18px rgba(0, 243, 255, 0.75));
 }
 
 .logo-icon {
