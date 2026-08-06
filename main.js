@@ -1,448 +1,473 @@
 /* ==========================================================================
-   AETHORA FUTURISTIC INTERACTIVE LOGIC & ENGINE
+   AETHORA FUTURISTIC INTERACTIVE LOGIC & ACCERON WIZARD ENGINE
+   BULLETPROOF HARDENED ENGINE — ZERO-FAIL GUARANTEE
    ========================================================================== */
 
+// 1. DATA STORES (Attached to window safely)
+window.techDataStore = {
+  web: {
+    title: "Custom Web & Mobile Application Platform",
+    desc: "High-speed reactive web platforms built with modular frontend components, lightning-fast rendering, and enterprise API architecture.",
+    icon: "💻",
+    tag: "React • Next.js • Web API",
+    list: [
+      "✓ Modern HTML5 / CSS3 / JavaScript High-Performance Architecture",
+      "✓ Mobile-First Responsive Breakpoints for 100% Device Compatibility",
+      "✓ SEO-Optimized Semantic Markup & Lightning Speed Load Times",
+      "✓ Secure API Endpoints & SSL Certificate Configuration"
+    ]
+  },
+  wordpress: {
+    title: "WordPress CMS & Enterprise Growth Solutions",
+    desc: "Custom WordPress theme development, Gutenberg blocks, and WooCommerce platforms designed for high security and seamless client management.",
+    icon: "⚡",
+    tag: "WordPress • PHP • Secure CMS",
+    list: [
+      "✓ Custom WordPress Theme & Plugin Customization",
+      "✓ Frictionless Drag-and-Drop Admin Dashboard Management",
+      "✓ Enterprise-Grade Security Hardening & Malware Shielding",
+      "✓ Automated Daily Database Backups & Cache Optimization"
+    ]
+  },
+  uiux: {
+    title: "Human-Centered UI/UX & Digital Brand Design",
+    desc: "User research, wireframing, high-fidelity visual design systems, and interactive Figma prototypes built to maximize engagement.",
+    icon: "🎨",
+    tag: "Figma • Design Systems • UX",
+    list: [
+      "✓ Comprehensive UI Component Libraries & Brand Guidelines",
+      "✓ User Journey Mapping & Interactive Clickable Prototypes",
+      "✓ Conversion Rate Optimization (CRO) Layout Hierarchy",
+      "✓ Accessibility (WCAG) Compliant Visual Aesthetics"
+    ]
+  },
+  ai: {
+    title: "AI Solutions & Automated Workflow Engines",
+    desc: "Integrating cutting-edge LLMs, autonomous agents, and self-healing n8n pipelines to automate complex manual operations.",
+    icon: "🤖",
+    tag: "AI Swarm • n8n • Python ML",
+    list: [
+      "✓ Custom LLM & Agent Tool Routing Integrations",
+      "✓ Automated Webhook Event Pipelines & CRM Data Sync",
+      "✓ Predictive Analytics & Machine Learning Forecast Engines",
+      "✓ 24/7 Background Task Processing & Telemetry Guard"
+    ]
+  },
+  maintenance: {
+    title: "Website Maintenance & 24/7 SLA Technical Support",
+    desc: "Continuous 24/7 uptime monitoring, security patching, speed optimization, and ongoing technical support to keep your site flawless.",
+    icon: "🛠️",
+    tag: "24/7 SLA • Security • Speed",
+    list: [
+      "✓ Continuous 24/7 Server Uptime & Performance Monitoring",
+      "✓ Instant Security Patching & Threat Shield Protection",
+      "✓ PageSpeed 95+ Performance Audits & Image Optimization",
+      "✓ Dedicated Technical Support SLA with <2h Response Time"
+    ]
+  }
+};
+
+window.wizardStepsData = {
+  1: {
+    speech: "Hey, I'm Aethora 👋 Tell me what you're trying to build — I'll guide you to the right solution.",
+    question: "What are you trying to improve or build right now?",
+    options: [
+      { text: "Build a website", icon: "🌐" },
+      { text: "Build a mobile app", icon: "📱" },
+      { text: "Build custom software", icon: "⚡" },
+      { text: "Automate business operations", icon: "🤖" },
+      { text: "Launch a new product / MVP", icon: "🚀" },
+      { text: "Get more leads / customers", icon: "📈" },
+      { text: "Not sure yet", icon: "❓" }
+    ]
+  },
+  2: {
+    speech: "Got it. That gives us a direction. Let's understand your business better.",
+    question: "What type of business are you running?",
+    options: [
+      { text: "Startup", icon: "🚀" },
+      { text: "Growing SME", icon: "📈" },
+      { text: "Enterprise", icon: "🏢" },
+      { text: "Local business", icon: "🏪" },
+      { text: "E-commerce brand", icon: "🛍️" },
+      { text: "Service business", icon: "💼" },
+      { text: "Other", icon: "⚡" }
+    ]
+  },
+  3: {
+    speech: "Cool — knowing your stage helps us recommend the right path.",
+    question: "Where are you right now?",
+    options: [
+      { text: "Just have an idea", icon: "💡" },
+      { text: "Already have a basic website / app", icon: "💻" },
+      { text: "Using spreadsheets / manual process", icon: "📊" },
+      { text: "Existing system is outdated", icon: "🔄" },
+      { text: "Running ads but not getting quality leads", icon: "📢" },
+      { text: "Want to add AI to current workflow", icon: "🤖" }
+    ]
+  },
+  4: {
+    speech: "Okay, this is the most important part — let's nail the real problem.",
+    question: "What is your biggest challenge?",
+    options: [
+      { text: "Low enquiries or poor conversions", icon: "📉" },
+      { text: "Manual work taking too much time", icon: "⏱️" },
+      { text: "No visibility in business operations", icon: "👁️" },
+      { text: "Existing website / app is not performing", icon: "⚠️" },
+      { text: "Need faster product launch", icon: "⚡" },
+      { text: "Need better customer experience", icon: "✨" },
+      { text: "Not sure what exactly is wrong", icon: "❓" }
+    ]
+  },
+  5: {
+    speech: "Almost there. Timing helps us plan resources for you.",
+    question: "How soon do you want to start?",
+    options: [
+      { text: "Immediately", icon: "🔥" },
+      { text: "Within 2 weeks", icon: "🗓️" },
+      { text: "This month", icon: "📅" },
+      { text: "Next month", icon: "⌛" },
+      { text: "Just exploring", icon: "🔍" }
+    ]
+  },
+  6: {
+    speech: "Last one — this helps us shape the right scope, not to filter you out.",
+    question: "What budget range are you comfortable with?",
+    options: [
+      { text: "Below ₹50,000", icon: "💳" },
+      { text: "₹50,000 - ₹1,00,000", icon: "💰" },
+      { text: "₹1,00,000 - ₹3,00,000", icon: "💎" },
+      { text: "₹3,00,000 - ₹5,00,000", icon: "🚀" },
+      { text: "₹5,00,000+", icon: "👑" },
+      { text: "Not decided yet", icon: "❓" }
+    ]
+  },
+  7: {
+    speech: "Based on your answers, here's what I'd recommend 👇",
+    question: "Want us to send you a quick project direction and estimated roadmap?",
+    isDoneScreen: true
+  }
+};
+
+window.aiResponsesStore = {
+  services: "At Aethora, we specialize in Custom Web & Mobile Apps, WordPress CMS Solutions, Human-Centered UI/UX Design, AI Automation & Workflow Engines, and 24/7 SLA Maintenance & Security Support.",
+  project: "To start your project, you can email us directly at aethorabusiness@gmail.com or click 'Start Project' on our top navigation bar to receive a proposal within 2 hours!",
+  ai: "Yes! We build custom AI agentic workflows, self-healing n8n automations, LLM integrations, and predictive analytics engines tailored to your business needs.",
+  email: "Our official direct enquiry email is aethorabusiness@gmail.com. You can also connect with us on Instagram @aethoratechnologies!",
+  default: "Thank you for asking! For a detailed proposal or custom inquiry, email our team at aethorabusiness@gmail.com or leave your project details in the 'Let's Talk' section below."
+};
+
+window.userAnswersStore = {};
+window.currentWizardStep = 1;
+
+// 2. CORE WIZARD RENDER FUNCTION
+function renderWizardStep(step) {
+  window.currentWizardStep = step;
+  const stepData = window.wizardStepsData[step];
+
+  const stepLabel = document.getElementById('step-label');
+  const stepProgressFill = document.getElementById('step-progress-fill');
+  const wizardSpeech = document.getElementById('wizard-speech');
+  const wizardQuestionTitle = document.getElementById('wizard-question-title');
+  const wizardOptionsGrid = document.getElementById('wizard-options-grid');
+  const wizardBackBtn = document.getElementById('wizard-back-btn');
+
+  if (stepLabel) {
+    stepLabel.textContent = step === 7 ? "Done" : `Step ${step} of 6`;
+  }
+  if (stepProgressFill) {
+    stepProgressFill.style.width = step === 7 ? "100%" : `${(step / 6) * 100}%`;
+  }
+  if (wizardSpeech) wizardSpeech.textContent = stepData.speech;
+  if (wizardQuestionTitle) wizardQuestionTitle.textContent = stepData.question;
+  if (wizardBackBtn) wizardBackBtn.disabled = (step === 1);
+
+  if (!wizardOptionsGrid) return;
+
+  if (stepData.isDoneScreen) {
+    wizardOptionsGrid.style.gridTemplateColumns = "1fr";
+    wizardOptionsGrid.innerHTML = `
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="recommendation-box">
+          <span class="recommendation-badge">💡 YOUR NEXT STEP</span>
+          <h3 class="recommendation-title">Website + Lead Generation System</h3>
+          <p class="recommendation-insight">
+            <strong>Ace insight:</strong> Your business needs a stronger digital presence and a better enquiry flow before scaling ads or automation.
+          </p>
+          <div class="recommendation-deliverables">
+            <div class="del-item">✓ Conversion-focused website</div>
+            <div class="del-item">✓ Lead capture system</div>
+            <div class="del-item">✓ WhatsApp / contact automation</div>
+            <div class="del-item">✓ Basic SEO setup</div>
+            <div class="del-item">✓ Tracking and analytics</div>
+          </div>
+        </div>
+
+        <form id="wizard-final-form" onsubmit="window.handleWizardFinalSubmit(event)">
+          <div class="wizard-final-inputs">
+            <div>
+              <label>Your name *</label>
+              <input type="text" id="wiz-name" required placeholder="e.g. Rohan Shah">
+            </div>
+            <div>
+              <label>WhatsApp number *</label>
+              <input type="tel" id="wiz-phone" required placeholder="+91 98XXXXXXXX">
+            </div>
+            <div>
+              <label>Email *</label>
+              <input type="email" id="wiz-email" required placeholder="you@company.com">
+            </div>
+            <div>
+              <label>Company / business name</label>
+              <input type="text" id="wiz-company" placeholder="Acme Pvt Ltd">
+            </div>
+          </div>
+
+          <div class="wizard-final-buttons">
+            <button type="submit" class="btn-wizard-send">
+              <span>⚡ Send My Project Direction</span>
+            </button>
+            <a href="mailto:aethorabusiness@gmail.com?subject=Free%20Strategy%20Call" class="btn-wizard-call">
+              <span>📞 Book a Free Strategy Call</span>
+            </a>
+          </div>
+          <p style="font-size: 0.76rem; color: #94a3b8; margin-top: 12px;">By submitting, you agree to be contacted about your project. No spam.</p>
+        </form>
+      </div>
+    `;
+  } else {
+    wizardOptionsGrid.style.gridTemplateColumns = "repeat(2, 1fr)";
+    wizardOptionsGrid.innerHTML = stepData.options.map(opt => `
+      <div class="wizard-opt-card" onclick="window.selectWizardOption('${opt.text.replace(/'/g, "\\'")}', ${step})">
+        <span>${opt.icon} &nbsp; ${opt.text}</span>
+        <span class="opt-arrow">→</span>
+      </div>
+    `).join('');
+  }
+}
+
+// 3. IMMEDIATE GLOBAL WINDOW TRIGGER BINDINGS (EXECUTED AT TOP LEVEL)
+window.toggleChatbot = function(e) {
+  if (e) e.stopPropagation();
+  const chatbotWindow = document.getElementById('chatbot-window');
+  if (chatbotWindow) {
+    chatbotWindow.classList.toggle('active');
+  }
+};
+
+window.closeChatbot = function() {
+  const chatbotWindow = document.getElementById('chatbot-window');
+  if (chatbotWindow) {
+    chatbotWindow.classList.remove('active');
+  }
+};
+
+window.openWizardStep = function(step = 1) {
+  const wizardModal = document.getElementById('wizard-modal');
+  if (wizardModal) {
+    wizardModal.classList.add('active');
+    renderWizardStep(step);
+  }
+};
+
+window.closeWizard = function() {
+  const wizardModal = document.getElementById('wizard-modal');
+  if (wizardModal) {
+    wizardModal.classList.remove('active');
+  }
+};
+
+window.wizardGoBack = function() {
+  if (window.currentWizardStep && window.currentWizardStep > 1) {
+    renderWizardStep(window.currentWizardStep - 1);
+  }
+};
+
+window.selectWizardOption = function(val, step) {
+  window.userAnswersStore[`step_${step}`] = val;
+  renderWizardStep(step + 1);
+};
+
+window.handleWizardFinalSubmit = function(e) {
+  if (e) e.preventDefault();
+  const nameInput = document.getElementById('wiz-name');
+  const emailInput = document.getElementById('wiz-email');
+  const name = nameInput ? nameInput.value : 'Client';
+  const email = emailInput ? emailInput.value : 'your email';
+  const wizardOptionsGrid = document.getElementById('wizard-options-grid');
+
+  if (wizardOptionsGrid) {
+    wizardOptionsGrid.innerHTML = `
+      <div style="text-align: center; padding: 32px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 20px; color: #166534;">
+        <div style="font-size: 3.5rem; margin-bottom: 12px;">🎉</div>
+        <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 8px;">Thank You, ${name}!</h3>
+        <p style="font-size: 0.95rem; line-height: 1.6;">Your custom project direction has been generated and sent to our lead engineering team. We will email your roadmap to <strong>${email}</strong> within 2 business hours!</p>
+      </div>
+    `;
+  }
+};
+
+window.switchTechTab = function(btnElement, techKey) {
+  const expTabBtns = document.querySelectorAll('.exp-tab-btn');
+  const expTitle = document.getElementById('exp-title');
+  const expDesc = document.getElementById('exp-desc');
+  const expList = document.getElementById('exp-list');
+  const expIcon = document.getElementById('exp-icon');
+  const expTag = document.getElementById('exp-tag');
+
+  expTabBtns.forEach(b => b.classList.remove('active'));
+  if (btnElement) btnElement.classList.add('active');
+
+  const data = window.techDataStore[techKey];
+  if (data && expTitle) {
+    expTitle.textContent = data.title;
+    expDesc.textContent = data.desc;
+    expIcon.textContent = data.icon;
+    expTag.textContent = data.tag;
+    expList.innerHTML = data.list.map(item => `<li>${item}</li>`).join('');
+  }
+};
+
+window.sendQuickQuery = function(qText) {
+  processUserQuery(qText);
+};
+
+window.handleChatSubmit = function(e) {
+  if (e) e.preventDefault();
+  const chatInput = document.getElementById('chat-input');
+  if (chatInput) {
+    const query = chatInput.value.trim();
+    if (query) {
+      processUserQuery(query);
+      chatInput.value = '';
+    }
+  }
+};
+
+// 4. CHATBOT HELPER FUNCTIONS
+function appendChatMessage(sender, text) {
+  const chatbotBody = document.getElementById('chatbot-body');
+  if (chatbotBody) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('chat-message', sender);
+    msgDiv.innerHTML = `<p>${text}</p>`;
+    chatbotBody.appendChild(msgDiv);
+    chatbotBody.scrollTop = chatbotBody.scrollHeight;
+  }
+}
+
+function processUserQuery(userText) {
+  appendChatMessage('user', userText);
+
+  setTimeout(() => {
+    const lower = userText.toLowerCase();
+    let responseText = window.aiResponsesStore.default;
+
+    if (lower.includes('service') || lower.includes('offer') || lower.includes('work') || lower.includes('do')) {
+      responseText = window.aiResponsesStore.services;
+    } else if (lower.includes('start') || lower.includes('project') || lower.includes('hire') || lower.includes('contact')) {
+      responseText = window.aiResponsesStore.project;
+    } else if (lower.includes('ai') || lower.includes('automation') || lower.includes('workflow') || lower.includes('n8n')) {
+      responseText = window.aiResponsesStore.ai;
+    } else if (lower.includes('email') || lower.includes('address') || lower.includes('reach') || lower.includes('inquiry')) {
+      responseText = window.aiResponsesStore.email;
+    }
+
+    appendChatMessage('bot', responseText);
+  }, 400);
+}
+
+// 5. ISOLATED SAFE DOM CONTENT LOADED (CANVAS & CURSOR WRAPPED IN TRY-CATCH)
 document.addEventListener('DOMContentLoaded', () => {
+  try {
+    /* Safe Canvas Background */
+    const canvas = document.getElementById('neural-canvas');
+    if (canvas && typeof canvas.getContext === 'function') {
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        let width = (canvas.width = window.innerWidth);
+        let height = (canvas.height = window.innerHeight);
 
-  /* ------------------------------------------------------------------------
-     1. AETHORA DRAGGABLE STICKER ENGINE
-     ------------------------------------------------------------------------ */
-  const stickers = document.querySelectorAll('.draggable-sticker');
+        window.addEventListener('resize', () => {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        });
 
-  stickers.forEach(sticker => {
-    let isDragging = false;
-    let startX = 0;
-    let startY = 0;
-    let initialLeft = 0;
-    let initialTop = 0;
+        class Particle {
+          constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 0.8;
+            this.vy = (Math.random() - 0.5) * 0.8;
+            this.radius = Math.random() * 2 + 1;
+            this.color = Math.random() > 0.5 ? '#00f3ff' : '#8a2be2';
+          }
 
-    sticker.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      startX = e.clientX;
-      startY = e.clientY;
+          update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+          }
 
-      const rect = sticker.getBoundingClientRect();
-      initialLeft = rect.left;
-      initialTop = rect.top + window.scrollY;
-
-      sticker.style.position = 'absolute';
-      sticker.style.left = `${initialLeft}px`;
-      sticker.style.top = `${initialTop}px`;
-      sticker.style.right = 'auto';
-      sticker.style.zIndex = 999;
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      const dx = e.clientX - startX;
-      const dy = e.clientY - startY;
-
-      sticker.style.left = `${initialLeft + dx}px`;
-      sticker.style.top = `${initialTop + dy}px`;
-    });
-
-    window.addEventListener('mouseup', () => {
-      if (isDragging) {
-        isDragging = false;
-        sticker.style.zIndex = 90;
-      }
-    });
-  });
-
-  /* ------------------------------------------------------------------------
-     2. CUSTOM FUTURISTIC GLOWING CURSOR MOTION ENGINE
-     ------------------------------------------------------------------------ */
-  const cursorDot = document.getElementById('cursor-dot');
-  const cursorRing = document.getElementById('cursor-ring');
-
-  let mouseX = window.innerWidth / 2;
-  let mouseY = window.innerHeight / 2;
-  let ringX = mouseX;
-  let ringY = mouseY;
-
-  window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-
-    if (cursorDot) {
-      cursorDot.style.left = `${mouseX}px`;
-      cursorDot.style.top = `${mouseY}px`;
-    }
-  });
-
-  function renderCursorRing() {
-    ringX += (mouseX - ringX) * 0.18;
-    ringY += (mouseY - ringY) * 0.18;
-
-    if (cursorRing) {
-      cursorRing.style.left = `${ringX}px`;
-      cursorRing.style.top = `${ringY}px`;
-    }
-
-    requestAnimationFrame(renderCursorRing);
-  }
-  renderCursorRing();
-
-  function setupCursorHover() {
-    const hoverTargets = document.querySelectorAll('a, button, input, select, textarea, .service-card, .opt-btn, .wf-node, .sim-tab-btn, .hero-visual-card, .draggable-sticker');
-
-    hoverTargets.forEach(target => {
-      target.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-      target.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-    });
-  }
-
-  setupCursorHover();
-
-  window.addEventListener('mousedown', () => document.body.classList.add('cursor-down'));
-  window.addEventListener('mouseup', () => document.body.classList.remove('cursor-down'));
-
-  /* ------------------------------------------------------------------------
-     3. NEURAL BACKGROUND CANVAS PARTICLE SYSTEM
-     ------------------------------------------------------------------------ */
-  const canvas = document.getElementById('neural-canvas');
-  const ctx = canvas.getContext('2d');
-
-  let width = (canvas.width = window.innerWidth);
-  let height = (canvas.height = window.innerHeight);
-
-  window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
-
-  class Particle {
-    constructor() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.8;
-      this.vy = (Math.random() - 0.5) * 0.8;
-      this.radius = Math.random() * 2 + 1;
-      this.color = Math.random() > 0.5 ? '#00f3ff' : '#8a2be2';
-    }
-
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-
-      if (this.x < 0 || this.x > width) this.vx *= -1;
-      if (this.y < 0 || this.y > height) this.vy *= -1;
-
-      const dx = mouseX - this.x;
-      const dy = mouseY - this.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 180) {
-        const force = (180 - dist) / 180;
-        this.x -= (dx / dist) * force * 2;
-        this.y -= (dy / dist) * force * 2;
-      }
-    }
-
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = this.color;
-      ctx.shadowColor = this.color;
-      ctx.shadowBlur = 8;
-      ctx.fill();
-      ctx.shadowBlur = 0;
-    }
-  }
-
-  const particleCount = Math.min(80, Math.floor(width / 18));
-  const particles = Array.from({ length: particleCount }, () => new Particle());
-
-  function animateParticles() {
-    ctx.clearRect(0, 0, width, height);
-
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw();
-
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 130) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          const opacity = (1 - dist / 130) * 0.25;
-          ctx.strokeStyle = `rgba(0, 243, 255, ${opacity})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-      }
-    }
-
-    requestAnimationFrame(animateParticles);
-  }
-
-  animateParticles();
-
-  /* ------------------------------------------------------------------------
-     4. HEADER SCROLL DETECTION
-     ------------------------------------------------------------------------ */
-  const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-
-  /* ------------------------------------------------------------------------
-     5. SIMULATOR TAB SWITCHER
-     ------------------------------------------------------------------------ */
-  const tabBtns = document.querySelectorAll('.sim-tab-btn');
-  const simPanels = document.querySelectorAll('.sim-panel');
-
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      simPanels.forEach(p => p.classList.remove('active'));
-
-      btn.classList.add('active');
-      const targetId = btn.getAttribute('data-tab');
-      document.getElementById(targetId).classList.add('active');
-
-      if (targetId === 'tab-ml') {
-        drawMLChart();
-      }
-    });
-  });
-
-  /* ------------------------------------------------------------------------
-     6. AETHORA SANDBOX SIMULATOR LOGIC
-     ------------------------------------------------------------------------ */
-  const runMcpBtn = document.getElementById('run-mcp-btn');
-  const mcpToolSelect = document.getElementById('mcp-tool-select');
-  const mcpPromptInput = document.getElementById('mcp-prompt-input');
-  const mcpOutputJson = document.getElementById('mcp-output-json');
-  const mcpStatus = document.getElementById('mcp-status');
-
-  const defaultResponse = {
-    aethora_engine: "v2.6.0",
-    endpoint: "https://aethora.ai/api",
-    authorization: "Bearer aethora_sec_***",
-    status: "200 OK",
-    tool: "aethora.agent_executor",
-    request_id: "req_aethora_8849204",
-    latency_ms: 6.42,
-    result: {
-      agent_status: "SUCCESS",
-      planner_nodes_executed: 4,
-      n8n_webhook_triggered: true,
-      prediction_confidence: 0.9942,
-      summary: "Aethora Agent successfully processed query: 'Analyze enterprise web traffic & predict next quarter churn rate'",
-      execution_trace: [
-        { step: 1, action: "Context Injection via Aethora Engine" },
-        { step: 2, action: "n8n Workflow Webhook Triggered" },
-        { step: 3, action: "Predictive Neural Net Inference Run" },
-        { step: 4, action: "Response JSON Streamed to Client" }
-      ]
-    }
-  };
-
-  mcpOutputJson.textContent = JSON.stringify(defaultResponse, null, 2);
-
-  runMcpBtn.addEventListener('click', () => {
-    const selectedTool = mcpToolSelect.value;
-    const promptText = mcpPromptInput.value || "Default query";
-
-    runMcpBtn.disabled = true;
-    runMcpBtn.innerHTML = `<span>⏳ Streaming payload...</span>`;
-    mcpStatus.textContent = "STATUS: PROCESSING...";
-    mcpStatus.style.color = "var(--accent-cyan)";
-
-    setTimeout(() => {
-      const response = {
-        aethora_engine: "v2.6.0",
-        endpoint: "https://aethora.ai/api",
-        authorization: "Bearer aethora_sec_***",
-        status: "200 OK",
-        tool: selectedTool,
-        timestamp: new Date().toISOString(),
-        request_id: `req_aethora_${Math.floor(Math.random() * 899999 + 100000)}`,
-        latency_ms: (Math.random() * 4 + 4).toFixed(2),
-        input_payload: {
-          prompt: promptText,
-          auth: "Valid Bearer Token"
-        },
-        result: {
-          agent_status: "EXECUTED_SUCCESSFULLY",
-          nodes_processed: selectedTool === 'aethora.n8n_webhook' ? 6 : 4,
-          output_data: `Aethora successfully executed ${selectedTool} with parameters.`,
-          accuracy_metrics: {
-            confidence: 0.998,
-            model_latency: "3.2ms"
+          draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.shadowColor = this.color;
+            ctx.shadowBlur = 8;
+            ctx.fill();
+            ctx.shadowBlur = 0;
           }
         }
-      };
 
-      mcpOutputJson.textContent = JSON.stringify(response, null, 2);
-      mcpStatus.textContent = "STATUS: 200 OK";
-      mcpStatus.style.color = "var(--accent-green)";
-      runMcpBtn.disabled = false;
-      runMcpBtn.innerHTML = `<span>▶ Execute Aethora Call</span>`;
-    }, 600);
-  });
+        const particleCount = Math.min(70, Math.floor(width / 20));
+        const particles = Array.from({ length: particleCount }, () => new Particle());
 
-  /* ------------------------------------------------------------------------
-     7. N8N WORKFLOW SIMULATOR ANIMATION LOGIC
-     ------------------------------------------------------------------------ */
-  const runWfBtn = document.getElementById('run-wf-btn');
-  const wfNodes = [
-    document.getElementById('wf-node-1'),
-    document.getElementById('wf-node-2'),
-    document.getElementById('wf-node-3'),
-    document.getElementById('wf-node-4')
-  ];
+        function animateParticles() {
+          ctx.clearRect(0, 0, width, height);
+          for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+            for (let j = i + 1; j < particles.length; j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 120) {
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                const opacity = (1 - dist / 120) * 0.2;
+                ctx.strokeStyle = `rgba(0, 243, 255, ${opacity})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+              }
+            }
+          }
+          if (typeof requestAnimationFrame === 'function') {
+            requestAnimationFrame(animateParticles);
+          }
+        }
 
-  runWfBtn.addEventListener('click', () => {
-    runWfBtn.disabled = true;
-    runWfBtn.innerHTML = `<span>⚡ Executing n8n Nodes...</span>`;
-
-    wfNodes.forEach(node => node.classList.remove('active-node'));
-
-    let current = 0;
-    const interval = setInterval(() => {
-      if (current > 0) wfNodes[current - 1].classList.remove('active-node');
-
-      if (current < wfNodes.length) {
-        wfNodes[current].classList.add('active-node');
-        current++;
-      } else {
-        clearInterval(interval);
-        setTimeout(() => {
-          wfNodes[wfNodes.length - 1].classList.remove('active-node');
-          runWfBtn.disabled = false;
-          runWfBtn.innerHTML = `<span>⚡ Run n8n Pipeline Simulation</span>`;
-        }, 500);
+        if (typeof requestAnimationFrame === 'function') {
+          requestAnimationFrame(animateParticles);
+        }
       }
-    }, 500);
-  });
-
-  /* ------------------------------------------------------------------------
-     8. PREDICTIVE ML PLAYGROUND CANVAS CHART
-     ------------------------------------------------------------------------ */
-  const mlCanvas = document.getElementById('ml-canvas');
-  const mlCtx = mlCanvas.getContext('2d');
-  const sliderData = document.getElementById('slider-data');
-  const sliderEpochs = document.getElementById('slider-epochs');
-  const valData = document.getElementById('val-data');
-  const valEpochs = document.getElementById('val-epochs');
-  const valAccuracy = document.getElementById('val-accuracy');
-  const valLoss = document.getElementById('val-loss');
-  const mlModelType = document.getElementById('ml-model-type');
-
-  function drawMLChart() {
-    if (!mlCanvas) return;
-    const w = (mlCanvas.width = mlCanvas.parentElement.clientWidth || 500);
-    const h = (mlCanvas.height = 270);
-
-    mlCtx.clearRect(0, 0, w, h);
-
-    // Background Grid
-    mlCtx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
-    mlCtx.lineWidth = 1;
-    for (let x = 0; x < w; x += 40) {
-      mlCtx.beginPath();
-      mlCtx.moveTo(x, 0);
-      mlCtx.lineTo(x, h);
-      mlCtx.stroke();
     }
-    for (let y = 0; y < h; y += 40) {
-      mlCtx.beginPath();
-      mlCtx.moveTo(0, y);
-      mlCtx.lineTo(w, y);
-      mlCtx.stroke();
-    }
-
-    const epochs = parseInt(sliderEpochs.value, 10);
-
-    // Accuracy Curve (Cyan)
-    mlCtx.beginPath();
-    mlCtx.strokeStyle = '#00f3ff';
-    mlCtx.lineWidth = 3;
-    mlCtx.shadowColor = '#00f3ff';
-    mlCtx.shadowBlur = 10;
-
-    const points = 35;
-    for (let i = 0; i <= points; i++) {
-      const px = (i / points) * (w - 40) + 20;
-      const progress = i / points;
-      const acc = 0.5 + 0.49 * Math.log10(1 + progress * (epochs / 50));
-      const py = h - (acc * (h - 60) + 20);
-
-      if (i === 0) mlCtx.moveTo(px, py);
-      else mlCtx.lineTo(px, py);
-    }
-    mlCtx.stroke();
-    mlCtx.shadowBlur = 0;
-
-    // Loss Curve (Violet)
-    mlCtx.beginPath();
-    mlCtx.strokeStyle = '#8a2be2';
-    mlCtx.lineWidth = 2;
-    for (let i = 0; i <= points; i++) {
-      const px = (i / points) * (w - 40) + 20;
-      const progress = i / points;
-      const loss = 0.8 * Math.exp(-progress * (epochs / 40));
-      const py = h - (loss * (h - 60) + 20);
-
-      if (i === 0) mlCtx.moveTo(px, py);
-      else mlCtx.lineTo(px, py);
-    }
-    mlCtx.stroke();
+  } catch (err) {
+    console.warn("Canvas decorative animation bypassed safely:", err);
   }
 
-  function updateMLMetrics() {
-    const dataVal = parseInt(sliderData.value, 10);
-    const epochsVal = parseInt(sliderEpochs.value, 10);
-
-    valData.textContent = dataVal.toLocaleString();
-    valEpochs.textContent = epochsVal;
-
-    const acc = Math.min(99.9, (98.2 + (epochsVal / 300) * 1.5 + (dataVal / 1000000) * 0.2)).toFixed(2);
-    const loss = Math.max(0.001, (0.05 - (epochsVal / 300) * 0.045)).toFixed(4);
-
-    valAccuracy.textContent = `${acc}%`;
-    valLoss.textContent = loss;
-
-    drawMLChart();
-  }
-
-  sliderData.addEventListener('input', updateMLMetrics);
-  sliderEpochs.addEventListener('input', updateMLMetrics);
-  mlModelType.addEventListener('change', updateMLMetrics);
-
-  setTimeout(drawMLChart, 200);
-
-  /* ------------------------------------------------------------------------
-     9. INTERACTIVE PROJECT ESTIMATOR CALCULATOR
-     ------------------------------------------------------------------------ */
-  const optButtons = document.querySelectorAll('.options-flex .opt-btn');
-  const totalPriceEl = document.getElementById('total-price');
-
-  optButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const parent = btn.parentElement;
-      parent.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-
-      calculateEstimate();
+  try {
+    /* Header Scroll Shadow */
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      if (header) {
+        if (window.scrollY > 40) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      }
     });
-  });
-
-  function calculateEstimate() {
-    let total = 0;
-    document.querySelectorAll('.options-flex .opt-btn.selected').forEach(btn => {
-      total += parseInt(btn.getAttribute('data-price'), 10);
-    });
-
-    totalPriceEl.textContent = `$${total.toLocaleString()}`;
+  } catch (err) {
+    console.warn("Scroll listener safely initialized:", err);
   }
 });

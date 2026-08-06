@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aethora — Next-Gen AI Agents & n8n Automation Ecosystem</title>
-  <meta name="description" content="Aethora is a pioneer in Autonomous AI Agentic Models, n8n Workflow Automations, Predictive Machine Learning, and Web & Mobile Applications.">
+  <title>Aethora — Next-Gen AI & Web Engineering Studio | Build What's Next</title>
+  <meta name="description" content="Aethora is a premium digital engineering studio specializing in Web Development, Mobile Apps, AI Automations, WordPress Solutions, UI/UX Design, and Growth Marketing.">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
 </head>
@@ -17,23 +17,101 @@
   <!-- Neural Canvas Background -->
   <canvas id="neural-canvas"></canvas>
 
-  <!-- Aethora Draggable Stickers Layer -->
-  <div id="sticker-container">
-    <div class="draggable-sticker" style="top: 140px; right: 50px; transform: rotate(4deg);">
-      <div class="sticker-badge">⚡ Aethora Engine</div>
-      <div class="sticker-title">Draggable Core v2</div>
+  <!-- Interactive Aethora AI Chatbot Window Popup (Bottom Right) -->
+  <div class="chatbot-window" id="chatbot-window">
+    <div class="chatbot-header">
+      <div class="chatbot-title-group">
+        <div class="chatbot-avatar">⚡</div>
+        <div>
+          <h4>Aethora AI Assistant</h4>
+          <span class="chatbot-status">● Online — Powered by Aethora OS</span>
+        </div>
+      </div>
+      <button class="chatbot-close-btn" id="chatbot-close-btn" onclick="window.closeChatbot()">✕</button>
     </div>
-    <div class="draggable-sticker" style="top: 360px; left: 40px; transform: rotate(-5deg);">
-      <div class="sticker-badge">⚡ n8n Pipeline</div>
-      <div class="sticker-title">Self-Healing Grid</div>
+
+    <div class="chatbot-body" id="chatbot-body">
+      <div class="chat-message bot">
+        <p>👋 Hello! Welcome to <strong>Aethora</strong>. How can I help you build your next digital product today?</p>
+      </div>
+
+      <!-- Suggested Quick Sample Questions -->
+      <div class="quick-questions" id="quick-questions">
+        <span class="quick-title">Suggested Questions:</span>
+        <button class="quick-btn" onclick="window.sendQuickQuery('What services does Aethora offer?')">💡 What services does Aethora offer?</button>
+        <button class="quick-btn" onclick="window.sendQuickQuery('How do I start a new project?')">🚀 How do I start a new project?</button>
+        <button class="quick-btn" onclick="window.sendQuickQuery('Do you build AI workflow automations?')">🤖 Do you build AI workflow automations?</button>
+        <button class="quick-btn" onclick="window.sendQuickQuery('What is your email for direct enquiries?')">📧 What is your email for enquiries?</button>
+      </div>
     </div>
-    <div class="draggable-sticker" style="top: 540px; right: 70px; transform: rotate(3deg);">
-      <div class="sticker-badge">🔮 Predictive ML</div>
-      <div class="sticker-title">99.4% Accuracy</div>
+
+    <div class="chatbot-footer">
+      <form id="chatbot-form" onsubmit="window.handleChatSubmit(event)">
+        <input type="text" id="chat-input" placeholder="Type your question..." autocomplete="off">
+        <button type="submit" class="chat-send-btn">➔</button>
+      </form>
     </div>
   </div>
 
-  <!-- Full Length Top Bar Header (Perfectly Centered Nav Links) -->
+  <!-- Floating Quick Trigger Widget (Toggles Chatbot Window) -->
+  <div class="floating-ask-widget">
+    <button class="btn-ask-aethora" id="ask-aethora-btn" onclick="window.toggleChatbot(event)">
+      <span class="ask-icon">💬</span>
+      <span>Ask Aethora</span>
+    </button>
+  </div>
+
+  <!-- 60-SECOND CONVERSATION WITH AETHORA WIZARD MODAL (MATCHING ALL 6 SCREENSHOTS) -->
+  <div class="wizard-modal-overlay" id="wizard-modal">
+    <div class="wizard-card-box">
+      <button class="wizard-close-x" id="wizard-close-btn" onclick="window.closeWizard()">✕</button>
+      
+      <div class="wizard-header">
+        <span class="wizard-badge">⚙ QUICK PROJECT CHECK</span>
+        <h2 class="wizard-title">A 60–second conversation with Aethora</h2>
+        <p class="wizard-subtitle">Answer six quick questions — get a personalised direction for your business.</p>
+      </div>
+
+      <!-- Guide Progress Header -->
+      <div class="wizard-guide-bar">
+        <div class="guide-profile">
+          <div class="guide-avatar">⚡</div>
+          <div>
+            <strong>Aethora</strong> • <small>Project guide</small>
+          </div>
+        </div>
+        <div class="wizard-step-tracker">
+          <span id="step-label">Step 1 of 6</span>
+          <div class="step-progress-track">
+            <div class="step-progress-fill" id="step-progress-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Speech Bubble -->
+      <div class="wizard-speech-bubble" id="wizard-speech">
+        Hey, I'm Aethora 👋 Tell me what you're trying to build — I'll guide you to the right solution.
+      </div>
+
+      <!-- Question Title -->
+      <h3 class="wizard-question-title" id="wizard-question-title">
+        What are you trying to improve or build right now?
+      </h3>
+
+      <!-- Dynamic Options & Final Form Grid -->
+      <div class="wizard-options-grid" id="wizard-options-grid">
+        <!-- Injected dynamically via JS -->
+      </div>
+
+      <!-- Wizard Controls Bar -->
+      <div class="wizard-footer-controls">
+        <button class="btn-wizard-nav" id="wizard-back-btn" onclick="window.wizardGoBack()" disabled>← Back</button>
+        <button class="btn-wizard-nav" id="wizard-restart-btn" onclick="window.openWizardStep(1)">Start over</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full Length Top Bar Header -->
   <header class="site-header" id="site-header">
     <div class="header-full-container">
       <div class="nav-wrapper">
@@ -47,22 +125,20 @@
         <!-- Centered Top Bar Navigation Menu Links -->
         <div class="nav-center-group">
           <ul class="nav-menu">
-            <li><a href="#solutions" class="nav-link">Solutions</a></li>
-            <li><a href="#n8n" class="nav-link">n8n Workflows</a></li>
-            <li><a href="#predictive" class="nav-link">Predictive ML</a></li>
-            <li><a href="#simulators" class="nav-link">Simulators</a></li>
-            <li><a href="#estimator" class="nav-link">Estimator</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#services" class="nav-link">Services</a></li>
+            <li><a href="#solutions" class="nav-link">AI Solutions</a></li>
+            <li><a href="#why-us" class="nav-link">Why Us</a></li>
+            <li><a href="#process" class="nav-link">Process</a></li>
+            <li><a href="#talk" class="nav-link">Let's Talk</a></li>
           </ul>
         </div>
 
-        <!-- Top Right Action Buttons -->
+        <!-- Top Right Action Button -->
         <div class="nav-actions">
-          <a href="#simulators" class="btn btn-glass btn-sm">
-            <span>⚡ Sandbox</span>
-          </a>
-          <a href="#estimator" class="btn btn-primary btn-sm">
-            <span>Consultation</span>
-          </a>
+          <button class="btn btn-primary btn-sm open-wizard-btn" onclick="window.openWizardStep(1)">
+            <span>Start Project</span>
+          </button>
         </div>
       </div>
     </div>
@@ -71,59 +147,179 @@
   <!-- Main Content -->
   <main>
 
-    <!-- Hero Section -->
+    <!-- Desktop 100% Zoom Fit Hero Section -->
     <section class="hero" id="hero">
       <div class="container">
         <div class="hero-grid">
           <div class="hero-content">
             <div class="badge-pill">
               <span class="badge-dot"></span>
-              <span>AI Agentic Native • n8n Intelligence • ML Engines</span>
+              <span>Next-Gen Web • AI Automation • Digital Growth</span>
             </div>
 
             <h1 class="hero-title">
-              Architecting <span class="text-gradient">Autonomous AI Agents</span> & Intelligent Pipelines
+              Build <span class="text-gradient">What's Next.</span>
             </h1>
 
             <p class="hero-description">
-              Aethora empowers enterprise software with cutting-edge **autonomous AI agentic frameworks**, self-healing **n8n automated workflows**, high-accuracy **predictive ML models**, and hyper-fast **futuristic web & application architectures**.
+              At <strong>Aethora</strong>, we don't just build websites—we create digital experiences that inspire trust, strengthen brands, and accelerate growth. From custom web development and AI-powered solutions to intuitive UI/UX design, we help ambitious businesses transform ideas into impactful digital products.
             </p>
 
             <div class="hero-cta">
-              <a href="#simulators" class="btn btn-primary">
-                <span>Explore Live Simulators</span>
+              <button class="btn btn-primary open-wizard-btn" onclick="window.openWizardStep(1)">
+                <span>Start Your Project</span>
                 <span>→</span>
+              </button>
+              <a href="#services" class="btn btn-glass">
+                <span>Explore Our Work</span>
               </a>
-              <a href="#solutions" class="btn btn-glass">
-                <span>Aethora Architecture</span>
-              </a>
+            </div>
+
+            <div class="hero-tagline-bar">
+              <span class="tagline-highlight">✨ Your Vision. Engineered for Tomorrow.</span>
             </div>
 
             <div class="hero-stats">
               <div class="stat-item">
-                <h3>99.98%</h3>
-                <p>Agent Precision</p>
+                <h3>100%</h3>
+                <p>Tailored Execution</p>
               </div>
               <div class="stat-item">
-                <h3>50M+</h3>
-                <p>n8n Executions/Day</p>
+                <h3>99.9%</h3>
+                <p>Scalable Uptime</p>
               </div>
               <div class="stat-item">
-                <h3>&lt;8ms</h3>
-                <p>Engine Latency</p>
+                <h3>&lt;2h</h3>
+                <p>Inquiry SLA Response</p>
               </div>
             </div>
           </div>
 
-          <div class="hero-visual-container">
-            <div class="hero-visual-card">
-              <img src="assets/hero_bg.jpg" alt="Aethora AI Neural Core Visual" class="hero-visual-img">
-              <div class="hero-floating-tag">
-                <div class="floating-tag-info">
-                  <h4>Aethora Swarm Engine</h4>
-                  <p>● Autonomous AI Swarm • 14 Active Nodes</p>
-                </div>
-                <span class="btn btn-primary btn-sm" style="padding: 6px 12px; font-size: 0.75rem;">LIVE</span>
+          <!-- Seamless Clean Robot Visual Atmosphere -->
+          <div class="hero-robot-container">
+            <div class="hero-robot-wrapper">
+              <div class="hero-robot-halo"></div>
+              <div class="hero-robot-orbit"></div>
+              <img src="assets/robot_visual.jpg" alt="Aethora AI Humanoid Intelligence" class="hero-robot-img">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- About Aethora Section -->
+    <section class="about-section" id="about">
+      <div class="container">
+        <div class="about-box">
+          <div class="section-header" style="margin-bottom: 32px;">
+            <div class="badge-pill">About Aethora</div>
+            <h2 class="section-title">Innovation. Creativity. <span class="text-gradient-cyan">Excellence.</span></h2>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-main-text">
+              <p class="about-lead">
+                <strong>Aethora</strong> is a technology-driven digital agency dedicated to building meaningful digital experiences.
+              </p>
+              <p>
+                We partner with startups, entrepreneurs, and established businesses to design and develop products that are fast, scalable, visually exceptional, and built for long-term success.
+              </p>
+              <p>
+                Every project is approached with curiosity, precision, and a commitment to delivering measurable value—not just beautiful designs.
+              </p>
+            </div>
+
+            <div class="about-quote-card">
+              <div class="quote-icon">💡</div>
+              <h3>"We believe technology should solve problems, simplify processes, and create opportunities. That's exactly what we build."</h3>
+              <span class="quote-author">— The Aethora Team</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full Spectrum Digital Services -->
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <div class="badge-pill">Our Expertise</div>
+          <h2 class="section-title">Full-Spectrum <span class="text-gradient-violet">Digital Capabilities</span></h2>
+          <p class="section-subtitle">Tailored digital engineering to elevate your brand and accelerate measurable business growth.</p>
+        </div>
+
+        <div class="slider-wrapper">
+          <div class="services-grid slider-track">
+            <!-- Service 1 -->
+            <div class="service-card slide-item">
+              <div class="service-icon">🌐</div>
+              <h3 class="service-title">Custom Website Development</h3>
+              <p class="service-desc">Powerful, scalable, and lightning-fast websites tailored to your business goals and performance benchmarks.</p>
+              <div class="service-tags">
+                <span class="tag">React & Modern Web</span>
+                <span class="tag">High Performance</span>
+                <span class="tag">Scalable</span>
+              </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card slide-item">
+              <div class="service-icon">⚡</div>
+              <h3 class="service-title">WordPress Solutions</h3>
+              <p class="service-desc">Flexible, secure, and easy-to-manage websites built for continuous growth and frictionless content updates.</p>
+              <div class="service-tags">
+                <span class="tag">WordPress CMS</span>
+                <span class="tag">Easy Management</span>
+                <span class="tag">Secure CMS</span>
+              </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card slide-item">
+              <div class="service-icon">📱</div>
+              <h3 class="service-title">Mobile App Development</h3>
+              <p class="service-desc">Native & cross-platform iOS and Android mobile apps engineered for fluid performance and high user retention.</p>
+              <div class="service-tags">
+                <span class="tag">iOS & Android</span>
+                <span class="tag">Cross Platform</span>
+                <span class="tag">Native UX</span>
+              </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="service-card slide-item">
+              <div class="service-icon">🎨</div>
+              <h3 class="service-title">UI/UX Design</h3>
+              <p class="service-desc">Thoughtfully designed interfaces that delight users, improve engagement, and reinforce brand authority.</p>
+              <div class="service-tags">
+                <span class="tag">Human-Centered</span>
+                <span class="tag">Figma Prototyping</span>
+                <span class="tag">Design Systems</span>
+              </div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="service-card slide-item">
+              <div class="service-icon">🤖</div>
+              <h3 class="service-title">AI Solutions & Automation</h3>
+              <p class="service-desc">Smart systems that automate complex workflows, enhance operational productivity, and unlock new possibilities.</p>
+              <div class="service-tags">
+                <span class="tag">AI Workflows</span>
+                <span class="tag">Automation</span>
+                <span class="tag">Smart Integrations</span>
+              </div>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="service-card slide-item">
+              <div class="service-icon">📈</div>
+              <h3 class="service-title">Digital Growth & SEO</h3>
+              <p class="service-desc">Performance marketing, search engine optimization, and conversion engineering to acquire high-value customers.</p>
+              <div class="service-tags">
+                <span class="tag">SEO Optimization</span>
+                <span class="tag">Growth Marketing</span>
+                <span class="tag">Conversion Tech</span>
               </div>
             </div>
           </div>
@@ -131,334 +327,231 @@
       </div>
     </section>
 
-    <!-- Solutions Pillar Section -->
-    <section class="services-section" id="solutions">
+    <!-- Interactive AI & Tech Solution Explorer (All Menu Tabs 100% Functional) -->
+    <section class="solutions-interactive-section" id="solutions">
       <div class="container">
         <div class="section-header">
-          <div class="badge-pill">Core Ecosystem</div>
-          <h2 class="section-title">Engineered for the <span class="text-gradient-cyan">Agentic Era</span></h2>
-          <p class="section-subtitle">Combining real-time agent execution protocols, predictive intelligence, and resilient web infrastructure.</p>
+          <div class="badge-pill">Interactive Studio Explorer</div>
+          <h2 class="section-title">Explore <span class="text-gradient-cyan">Aethora Tech Stack</span></h2>
+          <p class="section-subtitle">Click across our core technology pillars to inspect architecture details, deliverables, and execution timelines.</p>
         </div>
 
-        <div class="services-grid">
-          <!-- Card 1 -->
-          <div class="service-card">
-            <div class="service-icon">🤖</div>
-            <h3 class="service-title">Autonomous AI Agentic Swarms</h3>
-            <p class="service-desc">Multi-agent orchestrations designed for autonomous planning, code execution, QA verification, and context synthesis.</p>
-            <div class="service-tags">
-              <span class="tag">Aethora Engine</span>
-              <span class="tag">Multi-Agent Swarm</span>
-              <span class="tag">Tool Routing</span>
-            </div>
+        <div class="tech-explorer-box">
+          <div class="explorer-tabs">
+            <button class="exp-tab-btn active" data-tech="web" onclick="window.switchTechTab(this, 'web')">🌐 Web Development</button>
+            <button class="exp-tab-btn" data-tech="wordpress" onclick="window.switchTechTab(this, 'wordpress')">⚡ WordPress CMS</button>
+            <button class="exp-tab-btn" data-tech="uiux" onclick="window.switchTechTab(this, 'uiux')">🎨 UI/UX Design</button>
+            <button class="exp-tab-btn" data-tech="ai" onclick="window.switchTechTab(this, 'ai')">🤖 AI & Automation</button>
+            <button class="exp-tab-btn" data-tech="maintenance" onclick="window.switchTechTab(this, 'maintenance')">🛠️ Maintenance & Support</button>
           </div>
 
-          <!-- Card 2 -->
-          <div class="service-card">
-            <div class="service-icon">🔌</div>
-            <h3 class="service-title">Aethora Agent Infrastructure</h3>
-            <p class="service-desc">Native HTTP/SSE protocol integrations connecting enterprise databases, cloud tools, and agent engines seamlessly.</p>
-            <div class="service-tags">
-              <span class="tag">Agent Integration</span>
-              <span class="tag">Bearer Auth</span>
-              <span class="tag">JSON-RPC</span>
-            </div>
-          </div>
+          <div class="explorer-content" id="explorer-display">
+            <div class="exp-info">
+              <h3 id="exp-title">Custom Web & Mobile Application Platform</h3>
+              <p id="exp-desc">High-speed reactive web platforms built with modular frontend components, lightning-fast rendering, and enterprise API architecture.</p>
+              
+              <div class="exp-deliverables">
+                <h4>Core Deliverables:</h4>
+                <ul id="exp-list">
+                  <li>✓ Modern HTML5 / CSS3 / JavaScript High-Performance Architecture</li>
+                  <li>✓ Mobile-First Responsive Breakpoints for 100% Device Compatibility</li>
+                  <li>✓ SEO-Optimized Semantic Markup & Lightning Speed Load Times</li>
+                  <li>✓ Secure API Endpoints & SSL Certificate Configuration</li>
+                </ul>
+              </div>
 
-          <!-- Card 3 -->
-          <div class="service-card">
-            <div class="service-icon">⚡</div>
-            <h3 class="service-title">n8n AI Workflow Automations</h3>
-            <p class="service-desc">Self-healing, low-latency n8n pipelines integrated with custom LLM nodes, webhooks, and enterprise CRM triggers.</p>
-            <div class="service-tags">
-              <span class="tag">n8n Custom Nodes</span>
-              <span class="tag">Self-Healing</span>
-              <span class="tag">Webhook API</span>
+              <div style="margin-top: 24px;">
+                <button class="btn btn-primary btn-sm open-wizard-btn" onclick="window.openWizardStep(1)">
+                  <span>Consult On This Stack</span>
+                </button>
+              </div>
             </div>
-          </div>
 
-          <!-- Card 4 -->
-          <div class="service-card">
-            <div class="service-icon">🔮</div>
-            <h3 class="service-title">Predictive Machine Learning</h3>
-            <p class="service-desc">Real-time forecasting models, deep neural net prediction engines, and time-series algorithmic intelligence.</p>
-            <div class="service-tags">
-              <span class="tag">Forecasting</span>
-              <span class="tag">Neural Nets</span>
-              <span class="tag">Time-Series</span>
-            </div>
-          </div>
-
-          <!-- Card 5 -->
-          <div class="service-card">
-            <div class="service-icon">🌐</div>
-            <h3 class="service-title">Futuristic Web & Mobile Apps</h3>
-            <p class="service-desc">Ultra-responsive, glassmorphic reactive web platforms engineered for maximum engagement and lightning execution speed.</p>
-            <div class="service-tags">
-              <span class="tag">Modern Web</span>
-              <span class="tag">Spatial UI</span>
-              <span class="tag">Reactive Dashboards</span>
-            </div>
-          </div>
-
-          <!-- Card 6 -->
-          <div class="service-card">
-            <div class="service-icon">🛡️</div>
-            <h3 class="service-title">Enterprise Security & Audit</h3>
-            <p class="service-desc">SOC2 compliant agent boundaries, encrypted telemetry pipelines, and strict human-in-the-loop permission safety.</p>
-            <div class="service-tags">
-              <span class="tag">Zero Trust</span>
-              <span class="tag">Audited Logs</span>
-              <span class="tag">Token Guard</span>
+            <div class="exp-badge-visual">
+              <div class="visual-circle-glow">
+                <span class="circle-icon" id="exp-icon">💻</span>
+                <div class="circle-tag" id="exp-tag">React • Next.js • Web API</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Deep Dive Architecture Showcase -->
-    <section class="arch-section" id="architecture">
+    <!-- Why Businesses Choose Aethora (8 Advantages Grid) -->
+    <section class="why-us-section" id="why-us">
       <div class="container">
-        <div class="arch-grid">
-          <div class="arch-card">
-            <div class="arch-img-wrapper">
-              <img src="assets/originkit_engine.jpg" alt="Aethora Swarm Framework" class="arch-img">
-            </div>
-            <div class="arch-body">
-              <div class="badge-pill" style="margin-bottom: 12px;">Aethora Core</div>
-              <h3 class="service-title">Agent Integration Framework</h3>
-              <p class="service-desc">Aethora streams intelligent tools directly into agent context with zero latency. Fully compatible with enterprise endpoints and Bearer token security.</p>
-            </div>
-          </div>
+        <div class="section-header">
+          <div class="badge-pill">The Aethora Advantage</div>
+          <h2 class="section-title">Why Businesses <span class="text-gradient-cyan">Choose Aethora</span></h2>
+          <p class="section-subtitle">A partner invested in your long-term success with uncompromised engineering quality.</p>
+        </div>
 
-          <div class="arch-card" id="n8n">
-            <div class="arch-img-wrapper">
-              <img src="assets/n8n_workflow.jpg" alt="n8n Workflow Automation" class="arch-img">
-            </div>
-            <div class="arch-body">
-              <div class="badge-pill" style="margin-bottom: 12px;">n8n Pipeline</div>
-              <h3 class="service-title">Automated Event Orchestration</h3>
-              <p class="service-desc">Custom n8n nodes integrated with AI prediction triggers allow enterprise workflows to execute background actions, update databases, and notify systems autonomously.</p>
-            </div>
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-icon">✨</div>
+            <h4>Human-Centered Design</h4>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">⚡</div>
+            <h4>Performance-Driven Development</h4>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">📱</div>
+            <h4>Mobile-First Experiences</h4>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">🔍</div>
+            <h4>SEO-Optimized Architecture</h4>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">🛡️</div>
+            <h4>Secure & Scalable Solutions</h4>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">🤝</div>
+            <h4>Transparent Collaboration</h4>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">⏱️</div>
+            <h4>On-Time Delivery</h4>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">📈</div>
+            <h4>Long-Term Partnership</h4>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Interactive Simulators Hub -->
-    <section class="interactive-section" id="simulators">
+    <!-- Our Process (6-Step Interactive Stepper) -->
+    <section class="process-section" id="process">
       <div class="container">
         <div class="section-header">
-          <div class="badge-pill">Live Interactive Sandbox</div>
-          <h2 class="section-title">Experience <span class="text-gradient-violet">Aethora Technology</span></h2>
-          <p class="section-subtitle">Interact with our AI Agent sandbox, n8n workflow engine, and predictive ML analytics chart in real-time.</p>
+          <div class="badge-pill">Proven Roadmap</div>
+          <h2 class="section-title">Our <span class="text-gradient-violet">6-Step Process</span></h2>
+          <p class="section-subtitle">How we turn strategic visions into high-performing digital realities.</p>
         </div>
 
-        <div class="simulator-tabs">
-          <button class="sim-tab-btn active" data-tab="tab-mcp">🔌 AI Agent Sandbox</button>
-          <button class="sim-tab-btn" data-tab="tab-n8n">⚡ n8n Workflow Visualizer</button>
-          <button class="sim-tab-btn" data-tab="tab-ml">🔮 Predictive ML Playground</button>
+        <div class="process-stepper">
+          <div class="step-card">
+            <div class="step-num">01</div>
+            <h3 class="step-title">Discover</h3>
+            <p class="step-desc">We understand your business, target audience, competitive landscape, and core objectives.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">02</div>
+            <h3 class="step-title">Strategize</h3>
+            <p class="step-desc">We create an actionable roadmap focused on measurable business outcomes and tech feasibility.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">03</div>
+            <h3 class="step-title">Design</h3>
+            <p class="step-desc">Beautiful, user-focused visual experiences and design systems that strengthen your brand.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">04</div>
+            <h3 class="step-title">Develop</h3>
+            <p class="step-desc">Clean, efficient, and scalable code built with modern high-performance web tech stacks.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">05</div>
+            <h3 class="step-title">Launch</h3>
+            <p class="step-desc">Extensive cross-browser quality testing ensures a flawless, seamless experience across all devices.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">06</div>
+            <h3 class="step-title">Grow</h3>
+            <p class="step-desc">We continue optimizing, monitoring, supporting, and scaling your expanding digital presence.</p>
+          </div>
         </div>
+      </div>
+    </section>
 
-        <div class="sim-container">
-          <!-- Panel 1: AI Agent Sandbox -->
-          <div class="sim-panel active" id="tab-mcp">
-            <div class="mcp-grid">
-              <div class="mcp-controls">
-                <h3>Aethora Request Parameters</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">Select an Aethora tool and simulate payload execution through the Aethora endpoint.</p>
+    <!-- Let's Talk Conversion Section -->
+    <section class="talk-section" id="talk">
+      <div class="container">
+        <div class="talk-hero-card">
+          <div class="talk-grid">
+            
+            <!-- Left Info Content -->
+            <div class="talk-content">
+              <div class="badge-pill-light">
+                <span class="badge-dot-blue"></span>
+                <span>LET'S TALK</span>
+              </div>
 
-                <div class="form-group">
-                  <label>Select Aethora Tool:</label>
-                  <select id="mcp-tool-select" class="form-select">
-                    <option value="aethora.agent_executor">aethora.agent_executor (Autonomous Task Execution)</option>
-                    <option value="aethora.n8n_webhook">aethora.n8n_webhook (Trigger Workflow Pipeline)</option>
-                    <option value="aethora.predictive_query">aethora.predictive_query (Forecast Data Model)</option>
-                  </select>
-                </div>
+              <h2 class="talk-title">
+                Ready to build something that actually moves your business forward?
+              </h2>
 
-                <div class="form-group">
-                  <label>Target Domain / Prompt:</label>
-                  <input type="text" id="mcp-prompt-input" class="form-input" value="Analyze enterprise web traffic & predict next quarter churn rate">
-                </div>
+              <p class="talk-desc">
+                Whether you have a fully scoped brief or just a business problem you're working through — this is the right first conversation. No pitch. No hard sell. Just clarity on what to build and how.
+              </p>
 
-                <div class="form-group">
-                  <label>Authentication Token:</label>
-                  <input type="text" class="form-input" value="Bearer aethora_sec_9938f82a17c" readonly style="opacity: 0.7;">
-                </div>
-
-                <button id="run-mcp-btn" class="btn btn-primary">
-                  <span>▶ Execute Aethora Call</span>
+              <div class="talk-cta-buttons">
+                <button class="btn btn-blue-primary open-wizard-btn" onclick="window.openWizardStep(1)">
+                  <span>Start a Project</span>
+                  <span>→</span>
+                </button>
+                <button class="btn btn-outline-glass open-wizard-btn" onclick="window.openWizardStep(1)">
+                  <span>Get a Free AI Audit</span>
+                  <span>→</span>
                 </button>
               </div>
 
-              <div class="mcp-console">
-                <div class="console-header">
-                  <span class="console-title">HTTPS / SSE Stream Output (aethora.ai/api)</span>
-                  <span id="mcp-status" class="tag" style="color: var(--accent-green);">STATUS: 200 OK</span>
+              <!-- Prefer Email Direct Box -->
+              <div class="prefer-email-box">
+                <div class="prefer-icon-wrap">
+                  <span class="prefer-icon">📧</span>
                 </div>
-                <div class="console-body">
-                  <pre class="code-json" id="mcp-output-json">// Hit 'Execute Aethora Call' to stream live JSON payload response...</pre>
+                <div class="prefer-text-content">
+                  <h4>Prefer Direct Email?</h4>
+                  <p>Message us directly at <a href="mailto:aethorabusiness@gmail.com" class="email-highlight">aethorabusiness@gmail.com</a>. We typically respond within 2 business hours.</p>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Panel 2: n8n Workflow Simulator -->
-          <div class="sim-panel" id="tab-n8n">
-            <div style="text-align: center; margin-bottom: 24px;">
-              <h3>Live n8n Automated Pipeline Execution</h3>
-              <p style="color: var(--text-muted); font-size: 0.9rem;">Click 'Run n8n Pipeline' to watch real-time data packets flow between Aethora, Predictive ML, and Webhook nodes.</p>
-            </div>
-
-            <div class="workflow-nodes">
-              <div class="wf-node" id="wf-node-1">
-                <div class="node-icon">📥</div>
-                <div class="node-name">Webhook Trigger</div>
-                <div class="node-type">n8n Event Listener</div>
-              </div>
-              <div class="wf-arrow">➔</div>
-              <div class="wf-node" id="wf-node-2">
-                <div class="node-icon">🔌</div>
-                <div class="node-name">Aethora Node</div>
-                <div class="node-type">Context Injector</div>
-              </div>
-              <div class="wf-arrow">➔</div>
-              <div class="wf-node" id="wf-node-3">
-                <div class="node-icon">🧠</div>
-                <div class="node-name">Predictive ML Model</div>
-                <div class="node-type">Forecasting Model</div>
-              </div>
-              <div class="wf-arrow">➔</div>
-              <div class="wf-node" id="wf-node-4">
-                <div class="node-icon">🚀</div>
-                <div class="node-name">Database & App Webhook</div>
-                <div class="node-type">Automated Action</div>
-              </div>
-            </div>
-
-            <div style="text-align: center;">
-              <button id="run-wf-btn" class="btn btn-primary">
-                <span>⚡ Run n8n Pipeline Simulation</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Panel 3: Predictive ML Playground -->
-          <div class="sim-panel" id="tab-ml" id="predictive">
-            <div class="ml-grid">
-              <div class="ml-canvas-wrapper">
-                <canvas id="ml-canvas"></canvas>
-              </div>
-
-              <div class="mcp-controls">
-                <h3>Model Training Parameters</h3>
+            <!-- Right Interactive AI Orbital Ecosystem Visual -->
+            <div class="talk-visual-orbit">
+              <div class="orbit-hub">
+                <div class="orbit-center-orb">
+                  <span>AI</span>
+                  <small>AETHORA AI</small>
+                </div>
                 
-                <div class="form-group">
-                  <label>Training Data Volume (Records): <span id="val-data" style="color: var(--accent-cyan);">250,000</span></label>
-                  <input type="range" id="slider-data" min="50000" max="1000000" step="50000" value="250000">
+                <!-- Orbit Connected Nodes -->
+                <div class="orbit-node node-website">
+                  <span class="node-icon">🌐</span> Website
+                </div>
+                <div class="orbit-node node-growth">
+                  <span class="node-icon">📈</span> Growth
+                </div>
+                <div class="orbit-node node-mobile">
+                  <span class="node-icon">📱</span> Mobile App
+                </div>
+                <div class="orbit-node node-crm">
+                  <span class="node-icon">📊</span> CRM
+                </div>
+                <div class="orbit-node node-aiwf">
+                  <span class="node-icon">⚡</span> AI Workflow
                 </div>
 
-                <div class="form-group">
-                  <label>Epochs Iteration: <span id="val-epochs" style="color: var(--accent-cyan);">120</span></label>
-                  <input type="range" id="slider-epochs" min="10" max="300" step="10" value="120">
-                </div>
-
-                <div class="form-group">
-                  <label>Model Architecture:</label>
-                  <select id="ml-model-type" class="form-select">
-                    <option value="neural">Aethora Deep Neural Network v4</option>
-                    <option value="xgboost">XGBoost Time-Series Ensemble</option>
-                    <option value="transformer">Transformer Prediction Attention Engine</option>
-                  </select>
-                </div>
-
-                <div style="background: rgba(0,255,157,0.1); border: 1px solid var(--accent-green); padding: 12px; border-radius: var(--radius-sm);">
-                  <div style="font-size: 0.85rem; color: var(--accent-green); font-family: var(--font-mono);">
-                    Estimated Accuracy: <strong id="val-accuracy">99.4%</strong> | Loss: <strong id="val-loss">0.006</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Interactive Project Estimator Wizard -->
-    <section class="estimator-section" id="estimator">
-      <div class="container">
-        <div class="estimator-box">
-          <div class="section-header" style="margin-bottom: 32px;">
-            <div class="badge-pill">Interactive Scope Calculator</div>
-            <h2 class="section-title">Calculate Your <span class="text-gradient-cyan">Project Estimate</span></h2>
-            <p class="section-subtitle">Select your requirements for AI Agents, n8n automations, predictive models, and web/app development.</p>
-          </div>
-
-          <div class="estimator-grid">
-            <div class="est-form">
-              <!-- Option 1: AI Agent Swarm -->
-              <div class="option-group">
-                <h4>1. AI Agentic & Swarm Architecture</h4>
-                <div class="options-flex" id="opt-agent">
-                  <button class="opt-btn selected" data-value="single" data-price="2500">Single Agent</button>
-                  <button class="opt-btn" data-value="multi" data-price="6000">Multi-Agent Swarm</button>
-                  <button class="opt-btn" data-value="enterprise" data-price="12000">Enterprise Aethora Grid</button>
-                </div>
-              </div>
-
-              <!-- Option 2: n8n Workflows -->
-              <div class="option-group">
-                <h4>2. n8n Automation Workflows</h4>
-                <div class="options-flex" id="opt-n8n">
-                  <button class="opt-btn" data-value="none" data-price="0">None</button>
-                  <button class="opt-btn selected" data-value="standard" data-price="1800">5 Custom n8n Pipelines</button>
-                  <button class="opt-btn" data-value="complex" data-price="4500">Unlimited n8n Self-Healing Grid</button>
-                </div>
-              </div>
-
-              <!-- Option 3: Predictive ML Models -->
-              <div class="option-group">
-                <h4>3. Predictive ML Models</h4>
-                <div class="options-flex" id="opt-ml">
-                  <button class="opt-btn" data-value="none" data-price="0">None</button>
-                  <button class="opt-btn selected" data-value="forecasting" data-price="3500">Time-Series Forecast</button>
-                  <button class="opt-btn" data-value="deeplearning" data-price="8500">Custom Deep Learning Model</button>
-                </div>
-              </div>
-
-              <!-- Option 4: Web / Mobile Application -->
-              <div class="option-group">
-                <h4>4. Web & Mobile Application Platform</h4>
-                <div class="options-flex" id="opt-app">
-                  <button class="opt-btn selected" data-value="web" data-price="3000">Futuristic Web Application</button>
-                  <button class="opt-btn" data-value="fullstack" data-price="7500">Fullstack Web + Native Mobile</button>
-                </div>
+                <svg class="orbit-lines-svg" viewBox="0 0 400 350">
+                  <line x1="200" y1="175" x2="80" y2="80" stroke="rgba(0, 243, 255, 0.3)" stroke-width="1.5" stroke-dasharray="4" />
+                  <line x1="200" y1="175" x2="200" y2="50" stroke="rgba(0, 243, 255, 0.3)" stroke-width="1.5" stroke-dasharray="4" />
+                  <line x1="200" y1="175" x2="320" y2="90" stroke="rgba(0, 243, 255, 0.3)" stroke-width="1.5" stroke-dasharray="4" />
+                  <line x1="200" y1="175" x2="70" y2="260" stroke="rgba(0, 243, 255, 0.3)" stroke-width="1.5" stroke-dasharray="4" />
+                  <line x1="200" y1="175" x2="310" y2="260" stroke="rgba(0, 243, 255, 0.3)" stroke-width="1.5" stroke-dasharray="4" />
+                </svg>
               </div>
             </div>
 
-            <div class="est-summary">
-              <div>
-                <span style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Estimated Project Cost</span>
-                <div class="est-total-price" id="total-price">$10,800</div>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;">Includes architecture design, Aethora setup, n8n deployment, model training, and 12-month SLA maintenance support.</p>
-
-                <div style="border-top: 1px solid var(--border-subtle); padding-top: 16px; margin-bottom: 24px;">
-                  <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;">
-                    <span>Estimated Timeline:</span>
-                    <strong style="color: var(--accent-cyan);" id="est-timeline">3 - 4 Weeks</strong>
-                  </div>
-                  <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted);">
-                    <span>Architecture SLA:</span>
-                    <strong style="color: var(--accent-green);">99.99% Uptime</strong>
-                  </div>
-                </div>
-              </div>
-
-              <button class="btn btn-primary" style="width: 100%;" onclick="alert('Thank you! Aethora lead architect will reach out with your proposal within 2 hours.')">
-                <span>Get Full Architecture Proposal</span>
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -476,43 +569,58 @@
             <span>AETHORA</span>
           </a>
           <p class="footer-desc">
-            Pioneering autonomous AI agentic models, n8n workflow engines, predictive ML, and next-gen web applications.
+            Aethora — Building the Future, Digitally.<br>
+            Delivering results. Studio building custom websites, mobile apps, software, and AI systems.
           </p>
         </div>
 
         <div class="footer-col">
-          <h4>Technologies</h4>
+          <h4>SERVICES</h4>
           <ul class="footer-links">
-            <li><a href="#solutions">Aethora Swarm Engine</a></li>
-            <li><a href="#n8n">n8n Automation Grid</a></li>
-            <li><a href="#predictive">Predictive Analytics</a></li>
-            <li><a href="#solutions">Autonomous Swarms</a></li>
+            <li><a href="#services">Web Development</a></li>
+            <li><a href="#services">Mobile App Development</a></li>
+            <li><a href="#services">WordPress CMS</a></li>
+            <li><a href="#services">UI/UX Design</a></li>
+            <li><a href="#services">AI Automation</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Platform</h4>
+          <h4>COMPANY</h4>
           <ul class="footer-links">
-            <li><a href="#simulators">AI Agent Sandbox</a></li>
-            <li><a href="#estimator">Project Estimator</a></li>
-            <li><a href="#">API Documentation</a></li>
-            <li><a href="#">Security Audit</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#why-us">Why Choose Us</a></li>
+            <li><a href="#process">Our 6-Step Process</a></li>
+            <li><a href="#talk">Contact Us</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Company</h4>
+          <h4>CONTACT INFORMATION</h4>
           <ul class="footer-links">
-            <li><a href="#">About Aethora</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Research Papers</a></li>
-            <li><a href="#">Contact Support</a></li>
+            <li>
+              <a href="mailto:aethorabusiness@gmail.com" class="contact-footer-link">
+                <svg class="contact-icon-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                <span>aethorabusiness@gmail.com</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/aethoratechnologies?igsh=b2theW9obXU1aTRu&utm_source=qr" target="_blank" rel="noopener" class="contact-footer-link instagram-link">
+                <svg class="contact-icon-svg insta-icon-color" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                <span class="insta-handle">@aethoratechnologies</span>
+              </a>
+            </li>
+            <li><span style="color: var(--accent-green); font-size: 0.85rem;">⚡ Response within 2h</span></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 Aethora Tech Inc. All rights reserved. Powered by Aethora AI Engine & n8n Grid.</p>
+        <p>© 2026 Aethora Tech Inc. All rights reserved. Aethora — Building the Future, Digitally.</p>
       </div>
     </div>
   </footer>
