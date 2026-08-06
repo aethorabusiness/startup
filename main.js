@@ -344,15 +344,6 @@ window.handleWizardFinalSubmit = async function(e) {
     console.warn("FormSubmit HTTP API notice:", err);
   }
 
-  // Backup mailto launch
-  const emailSubject = `New Project Inquiry from ${name}`;
-  const emailBody = `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nCompany: ${company}\nGoal: ${answers.step_1}\nBusiness: ${answers.step_2}\nStage: ${answers.step_3}\nChallenge: ${answers.step_4}\nTimeline: ${answers.step_5}\nBudget: ${answers.step_6}`;
-  const mailtoUrl = `mailto:info@aethora.in?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-  
-  setTimeout(() => {
-    window.location.href = mailtoUrl;
-  }, 200);
-
   if (wizardOptionsGrid) {
     wizardOptionsGrid.innerHTML = `
       <div style="text-align: center; padding: 32px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 20px; color: #166534;">
