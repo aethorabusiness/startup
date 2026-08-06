@@ -386,23 +386,26 @@ a, button, input, select, textarea, .btn, .exp-tab-btn, .wizard-opt-card, .btn-a
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: flex-start;
   text-decoration: none;
-  min-width: 220px;
+  min-width: 260px;
   flex-shrink: 0;
+  overflow: visible !important;
 }
 
 .brand-logo-img {
-  height: 46px;
+  height: 52px;
   width: auto;
+  max-width: 260px;
   object-fit: contain;
-  filter: drop-shadow(0 0 12px rgba(0, 243, 255, 0.45));
+  filter: brightness(1.5) contrast(1.25) drop-shadow(0 0 18px rgba(0, 243, 255, 0.8));
   transition: transform 0.25s ease, filter 0.25s ease;
+  display: block;
 }
 
 .brand-logo-img:hover {
   transform: scale(1.05);
-  filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.8));
+  filter: brightness(1.65) contrast(1.3) drop-shadow(0 0 28px rgba(0, 243, 255, 1));
 }
 
 .wizard-title {
@@ -790,30 +793,8 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-  min-width: 250px;
-  flex-shrink: 0;
-}
-
-.brand-logo-img {
-  height: 52px;
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 0 14px rgba(0, 243, 255, 0.5));
-  transition: transform 0.25s ease, filter 0.25s ease;
-}
-
-.brand-logo-img:hover {
-  transform: scale(1.06);
-  filter: drop-shadow(0 0 24px rgba(0, 243, 255, 0.85));
-}
-
 .site-footer .brand-logo-img {
-  height: 58px;
+  height: 60px;
   margin-bottom: 8px;
 }
 
