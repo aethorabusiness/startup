@@ -315,9 +315,8 @@ window.handleWizardFinalSubmit = async function(e) {
 
   // Construct structured payload for FormSubmit API
   const formData = {
-    _subject: `New Project Lead: ${name} (${company || 'Aethora Client'})`,
-    _replyto: email,
-    _template: 'table',
+    _subject: `[AETHORA DIRECT LEAD] Project Inquiry from ${name}`,
+    _template: 'box',
     _captcha: 'false',
     Client_Name: name,
     WhatsApp_Phone: phone,
