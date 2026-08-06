@@ -383,6 +383,28 @@ a, button, input, select, textarea, .btn, .exp-tab-btn, .wizard-opt-card, .btn-a
   margin-bottom: 12px;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  min-width: 220px;
+  flex-shrink: 0;
+}
+
+.brand-logo-img {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(0, 243, 255, 0.45));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.brand-logo-img:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.8));
+}
+
 .wizard-title {
   font-size: 2.2rem;
   color: #0f172a;
