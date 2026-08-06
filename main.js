@@ -331,8 +331,8 @@ window.handleWizardFinalSubmit = async function(e) {
   };
 
   try {
-    // Send form data directly over HTTP API to info@aethora.in
-    await fetch('https://formsubmit.co/ajax/info@aethora.in', {
+    // Send form data directly over HTTP API to info@aethora.in via activated token
+    await fetch('https://formsubmit.co/ajax/7fd8a452350f0657155969f31408c99b', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
