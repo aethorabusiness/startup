@@ -10,12 +10,12 @@
   --font-body: 'Plus Jakarta Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Color Palette Matching Deep Navy Logo Background #021740 */
-  --bg-primary: #021740;
-  --bg-secondary: #031c4f;
-  --bg-surface: #042463;
-  --bg-glass: rgba(2, 23, 64, 0.85);
-  --bg-glass-hover: rgba(3, 30, 84, 0.95);
+  /* Color Palette */
+  --bg-primary: #050711;
+  --bg-secondary: #0a0e22;
+  --bg-surface: #0f152d;
+  --bg-glass: rgba(15, 22, 48, 0.75);
+  --bg-glass-hover: rgba(23, 33, 70, 0.95);
 
   --accent-cyan: #00f3ff;
   --accent-cyan-glow: rgba(0, 243, 255, 0.4);
@@ -740,15 +740,15 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 1000;
   padding: 14px 0;
   transition: var(--transition-normal);
-  background: rgba(2, 23, 64, 0.95);
+  background: rgba(5, 7, 17, 0.85);
   backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(0, 243, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   pointer-events: auto !important;
 }
 
 .site-header.scrolled {
   padding: 10px 0;
-  background: rgba(2, 23, 64, 0.98);
+  background: rgba(5, 7, 17, 0.95);
   backdrop-filter: blur(22px);
   border-bottom: 1px solid var(--border-cyan);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
@@ -1717,7 +1717,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Footer & Contact Links Styling */
 .site-footer {
   padding: 64px 0 36px;
-  background: #021740;
+  background: #03040a;
   border-top: 1px solid var(--border-subtle);
 }
 
