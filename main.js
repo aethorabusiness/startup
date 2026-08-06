@@ -151,10 +151,10 @@ window.wizardStepsData = {
 
 window.aiResponsesStore = {
   services: "At Aethora, we specialize in Custom Web & Mobile Apps, WordPress CMS Solutions, Human-Centered UI/UX Design, AI Automation & Workflow Engines, and 24/7 SLA Maintenance & Security Support.",
-  project: "To start your project, you can email us directly at aethorabusiness@gmail.com or click 'Start Project' on our top navigation bar to receive a proposal within 2 hours!",
+  project: "To start your project, you can email us directly at info@aethora.in or click 'Start Project' on our top navigation bar to receive a proposal within 2 hours!",
   ai: "Yes! We build custom AI agentic workflows, self-healing n8n automations, LLM integrations, and predictive analytics engines tailored to your business needs.",
-  email: "Our official direct enquiry email is aethorabusiness@gmail.com. You can also connect with us on Instagram @aethoratechnologies!",
-  default: "Thank you for asking! For a detailed proposal or custom inquiry, email our team at aethorabusiness@gmail.com or leave your project details in the 'Let's Talk' section below."
+  email: "Our official direct enquiry email is info@aethora.in. You can also connect with us on Instagram @aethoratechnologies!",
+  default: "Thank you for asking! For a detailed proposal or custom inquiry, email our team at info@aethora.in or leave your project details in the 'Let's Talk' section below."
 };
 
 window.userAnswersStore = {};
@@ -227,7 +227,7 @@ function renderWizardStep(step) {
             <button type="submit" class="btn-wizard-send">
               <span>⚡ Send My Project Direction</span>
             </button>
-            <a href="mailto:aethorabusiness@gmail.com?subject=Free%20Strategy%20Call" class="btn-wizard-call">
+            <a href="mailto:info@aethora.in?subject=Free%20Strategy%20Call" class="btn-wizard-call">
               <span>📞 Book a Free Strategy Call</span>
             </a>
           </div>
