@@ -388,24 +388,24 @@ a, button, input, select, textarea, .btn, .exp-tab-btn, .wizard-opt-card, .btn-a
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
-  min-width: 200px;
+  min-width: 220px;
   flex-shrink: 0;
-  height: 42px;
+  height: 48px;
 }
 
 .brand-logo-img {
-  height: 32px;
+  height: 42px;
   width: auto;
-  max-width: 200px;
+  max-width: 220px;
   object-fit: contain;
-  filter: none !important;
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.45));
+  transition: transform 0.25s ease, filter 0.25s ease;
   display: block;
 }
 
 .brand-logo-img:hover {
-  transform: scale(1.04);
-  opacity: 0.92;
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 18px rgba(0, 243, 255, 0.8));
 }
 
 .wizard-title {
