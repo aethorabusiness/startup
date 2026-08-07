@@ -388,15 +388,15 @@ a, button, input, select, textarea, .btn, .exp-tab-btn, .wizard-opt-card, .btn-a
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
-  min-width: 220px;
+  min-width: 200px;
   flex-shrink: 0;
-  height: 48px;
+  height: 44px;
 }
 
 .brand-logo-img {
-  height: 42px;
+  height: 38px;
   width: auto;
-  max-width: 220px;
+  max-width: 200px;
   object-fit: contain;
   filter: none !important;
   transition: transform 0.25s ease, opacity 0.25s ease;
