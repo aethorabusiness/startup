@@ -410,20 +410,43 @@ function processUserQuery(userText) {
 
   setTimeout(() => {
     const lower = userText.toLowerCase();
-    let responseText = window.aiResponsesStore.default;
+    let responseText = "";
 
-    if (lower.includes('service') || lower.includes('offer') || lower.includes('work') || lower.includes('do')) {
-      responseText = window.aiResponsesStore.services;
-    } else if (lower.includes('start') || lower.includes('project') || lower.includes('hire') || lower.includes('contact')) {
-      responseText = window.aiResponsesStore.project;
-    } else if (lower.includes('ai') || lower.includes('automation') || lower.includes('workflow') || lower.includes('n8n')) {
-      responseText = window.aiResponsesStore.ai;
-    } else if (lower.includes('email') || lower.includes('address') || lower.includes('reach') || lower.includes('inquiry')) {
-      responseText = window.aiResponsesStore.email;
+    // 1. SERVICES & OFFERINGS
+    if (lower.includes('service') || lower.includes('offer') || lower.includes('what do you do') || lower.includes('capabilities') || lower.includes('build')) {
+      responseText = "At Aethora, we specialize in high-performance Web & Mobile Development, AI Solutions & Workflow Automation, SaaS Platforms, Branding & UI/UX Design, and Digital Transformation. Whether you're a startup or an enterprise, we build scalable digital products tailored to your goals. Would you like to discuss a specific service for your business?";
+    } 
+    // 2. PRICING & COST ESTIMATES
+    else if (lower.includes('cost') || lower.includes('price') || lower.includes('pricing') || lower.includes('how much') || lower.includes('rate') || lower.includes('budget') || lower.includes('quote')) {
+      responseText = "Project costs depend on your specific requirements, design complexity, and feature scope. We offer flexible pricing models tailored to your goals. We can schedule a quick 15-minute consultation to understand your project and provide an accurate estimate. Would you like us to share a preliminary quote?";
+    } 
+    // 3. AI CHATBOTS & AUTOMATION
+    else if (lower.includes('ai') || lower.includes('chatbot') || lower.includes('automation') || lower.includes('n8n') || lower.includes('agent') || lower.includes('workflow')) {
+      responseText = "Yes! We design and deploy intelligent AI chatbots, self-healing n8n automation pipelines, LLM integrations, and custom AI agents. We can integrate them directly into your website, CRM, or internal workflows. Would you like to see how AI automation can streamline your operations?";
+    } 
+    // 4. WEBSITE & MOBILE APP DEVELOPMENT
+    else if (lower.includes('website') || lower.includes('web') || lower.includes('app') || lower.includes('mobile') || lower.includes('react') || lower.includes('wordpress') || lower.includes('next')) {
+      responseText = "We engineer lightning-fast, custom websites and mobile apps built with React, Next.js, and WordPress. All our builds are mobile-first, SEO-optimized, and conversion-focused. Are you looking to launch a new product or revamp an existing platform?";
+    } 
+    // 5. PORTFOLIO & WORK EXAMPLES
+    else if (lower.includes('portfolio') || lower.includes('work') || lower.includes('example') || lower.includes('case study') || lower.includes('client') || lower.includes('projects')) {
+      responseText = "We have delivered high-impact digital solutions across Web Apps, AI Workflow Automation, and SaaS platforms for startups and enterprise clients. Detailed case studies and live demos are available upon request. Would you like us to send relevant project samples to your email?";
+    } 
+    // 6. CONTACT & HIRE / SALES CONVERSION
+    else if (lower.includes('start') || lower.includes('project') || lower.includes('hire') || lower.includes('contact') || lower.includes('email') || lower.includes('consultation') || lower.includes('talk') || lower.includes('meet')) {
+      responseText = "We're currently taking on a limited number of new projects to maintain peak quality. You can share your details via the 'Start Project' wizard at the top, or message us directly at info@aethora.in. Would you like me to open the project roadmap guide for you right now?";
+    } 
+    // 7. TIME / DURATION
+    else if (lower.includes('time') || lower.includes('how long') || lower.includes('timeline') || lower.includes('duration') || lower.includes('deadline')) {
+      responseText = "Timelines depend on project complexity: MVPs and custom websites typically take 2-4 weeks, while complex SaaS platforms or AI integrations take 4-8 weeks. We prioritize fast, milestone-driven execution. What is your ideal target launch date?";
+    }
+    // 8. FALLBACK & GENERAL INQUIRIES
+    else {
+      responseText = "Let me get more details on that for you. In the meantime, feel free to share your specific business requirements or project goals so our team can assist you better. You can also email us directly at info@aethora.in!";
     }
 
     appendChatMessage('bot', responseText);
-  }, 400);
+  }, 450);
 }
 
 // 5. ISOLATED SAFE DOM CONTENT LOADED (CANVAS & CURSOR WRAPPED IN TRY-CATCH)
