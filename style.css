@@ -390,22 +390,22 @@ a, button, input, select, textarea, .btn, .exp-tab-btn, .wizard-opt-card, .btn-a
   text-decoration: none;
   min-width: 220px;
   flex-shrink: 0;
-  height: 48px;
+  height: 52px;
 }
 
 .brand-logo-img {
-  height: 42px;
+  height: 44px;
   width: auto;
   max-width: 220px;
   object-fit: contain;
-  filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.45));
+  filter: drop-shadow(0 0 12px rgba(0, 243, 255, 0.5));
   transition: transform 0.25s ease, filter 0.25s ease;
   display: block;
 }
 
 .brand-logo-img:hover {
   transform: scale(1.05);
-  filter: drop-shadow(0 0 18px rgba(0, 243, 255, 0.8));
+  filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.85));
 }
 
 .wizard-title {
