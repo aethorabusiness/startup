@@ -1814,36 +1814,117 @@ h1, h2, h3, h4, h5, h6 {
   .hero-grid, .about-grid, .explorer-content, .services-grid, .why-grid, .process-stepper {
     grid-template-columns: 1fr;
   }
-  .hero-title, .talk-title { font-size: 2.4rem; }
+  .hero-title { font-size: 2.4rem; }
+  .talk-title { font-size: 2.2rem; }
+  .talk-grid { grid-template-columns: 1fr; gap: 36px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .wizard-options-grid, .recommendation-deliverables, .wizard-final-inputs { grid-template-columns: 1fr; }
   .wizard-final-buttons { flex-direction: column; }
 }
 
 @media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100vw;
+    max-width: 100%;
+  }
+
+  .container {
+    padding: 0 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   .header-full-container { padding: 0 16px; }
   .logo { min-width: auto; height: 36px; }
   .brand-logo-img { height: 28px; max-width: 140px; }
   .nav-actions { min-width: auto; gap: 10px; }
   .nav-actions .btn-glow-cyan { padding: 8px 14px; font-size: 0.82rem; }
   
-  .hero-section { padding: 110px 0 50px; }
-  .hero-title { font-size: 2.1rem; line-height: 1.25; }
+  .hero-section { padding: 105px 0 45px; }
+  .hero-title { font-size: 2.0rem; line-height: 1.25; }
   .hero-subtitle { font-size: 0.95rem; }
   .hero-cta-group { flex-direction: column; width: 100%; gap: 12px; }
-  .hero-cta-group .btn { width: 100%; justify-content: center; }
+  .hero-cta-group .btn { width: 100%; justify-content: center; box-sizing: border-box; }
 
+  /* Let's Talk / Contact Card Mobile Fixes */
+  .talk-card {
+    padding: 28px 18px;
+    border-radius: 22px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .talk-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    width: 100%;
+  }
+  .talk-title {
+    font-size: 1.75rem;
+    line-height: 1.25;
+    margin-bottom: 14px;
+    word-break: break-word;
+  }
+  .talk-desc {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+  .talk-cta-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .talk-cta-buttons .btn-blue-primary,
+  .talk-cta-buttons .btn-outline-glass {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 12px 18px;
+  }
+  
+  /* Prefer Email Box Mobile Fix */
+  .prefer-email-box {
+    flex-direction: column;
+    padding: 16px;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 14px;
+  }
+  .prefer-text-content p {
+    font-size: 0.85rem;
+    word-break: break-word;
+  }
+
+  /* Orbital Diagram Scaling on Mobile */
+  .talk-visual-orbit {
+    height: 260px;
+    width: 100%;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  .orbit-hub {
+    transform: scale(0.75);
+    transform-origin: center center;
+    max-width: 100%;
+  }
+
+  /* Guided Wizard Mobile Fixes */
   .wizard-modal-container {
     width: 94%;
     max-width: 94%;
-    padding: 20px 16px;
+    padding: 20px 14px;
     border-radius: 18px;
     max-height: 88vh;
     overflow-y: auto;
+    box-sizing: border-box;
   }
   .wizard-header { flex-direction: column; align-items: flex-start; gap: 10px; }
   .wizard-step-tracker { width: 100%; justify-content: space-between; }
-  .wizard-title { font-size: 1.45rem; }
+  .wizard-title { font-size: 1.4rem; }
   .wizard-sub { font-size: 0.85rem; }
   .wizard-opt-card { padding: 14px 16px; font-size: 0.9rem; min-height: 48px; }
 
@@ -1853,7 +1934,10 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 480px) {
   .brand-logo-img { height: 24px; max-width: 120px; }
-  .hero-title { font-size: 1.8rem; }
+  .hero-title { font-size: 1.7rem; }
   .hero-badge { font-size: 0.72rem; padding: 4px 12px; }
+  .talk-card { padding: 22px 14px; }
+  .talk-title { font-size: 1.55rem; }
+  .orbit-hub { transform: scale(0.65); }
   .wizard-modal-container { width: 96%; padding: 16px 12px; }
 }
