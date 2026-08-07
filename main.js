@@ -409,40 +409,60 @@ function processUserQuery(userText) {
   appendChatMessage('user', userText);
 
   setTimeout(() => {
-    const lower = userText.toLowerCase();
+    const lower = userText.toLowerCase().trim();
     let responseText = "";
 
-    // 1. SERVICES & OFFERINGS
-    if (lower.includes('service') || lower.includes('offer') || lower.includes('what do you do') || lower.includes('capabilities') || lower.includes('build')) {
-      responseText = "At Aethora, we specialize in high-performance Web & Mobile Development, AI Solutions & Workflow Automation, SaaS Platforms, Branding & UI/UX Design, and Digital Transformation. Whether you're a startup or an enterprise, we build scalable digital products tailored to your goals. Would you like to discuss a specific service for your business?";
-    } 
-    // 2. PRICING & COST ESTIMATES
-    else if (lower.includes('cost') || lower.includes('price') || lower.includes('pricing') || lower.includes('how much') || lower.includes('rate') || lower.includes('budget') || lower.includes('quote')) {
-      responseText = "Project costs depend on your specific requirements, design complexity, and feature scope. We offer flexible pricing models tailored to your goals. We can schedule a quick 15-minute consultation to understand your project and provide an accurate estimate. Would you like us to share a preliminary quote?";
-    } 
-    // 3. AI CHATBOTS & AUTOMATION
-    else if (lower.includes('ai') || lower.includes('chatbot') || lower.includes('automation') || lower.includes('n8n') || lower.includes('agent') || lower.includes('workflow')) {
-      responseText = "Yes! We design and deploy intelligent AI chatbots, self-healing n8n automation pipelines, LLM integrations, and custom AI agents. We can integrate them directly into your website, CRM, or internal workflows. Would you like to see how AI automation can streamline your operations?";
-    } 
-    // 4. WEBSITE & MOBILE APP DEVELOPMENT
-    else if (lower.includes('website') || lower.includes('web') || lower.includes('app') || lower.includes('mobile') || lower.includes('react') || lower.includes('wordpress') || lower.includes('next')) {
-      responseText = "We engineer lightning-fast, custom websites and mobile apps built with React, Next.js, and WordPress. All our builds are mobile-first, SEO-optimized, and conversion-focused. Are you looking to launch a new product or revamp an existing platform?";
-    } 
-    // 5. PORTFOLIO & WORK EXAMPLES
-    else if (lower.includes('portfolio') || lower.includes('work') || lower.includes('example') || lower.includes('case study') || lower.includes('client') || lower.includes('projects')) {
-      responseText = "We have delivered high-impact digital solutions across Web Apps, AI Workflow Automation, and SaaS platforms for startups and enterprise clients. Detailed case studies and live demos are available upon request. Would you like us to send relevant project samples to your email?";
-    } 
-    // 6. CONTACT & HIRE / SALES CONVERSION
-    else if (lower.includes('start') || lower.includes('project') || lower.includes('hire') || lower.includes('contact') || lower.includes('email') || lower.includes('consultation') || lower.includes('talk') || lower.includes('meet')) {
-      responseText = "We're currently taking on a limited number of new projects to maintain peak quality. You can share your details via the 'Start Project' wizard at the top, or message us directly at info@aethora.in. Would you like me to open the project roadmap guide for you right now?";
-    } 
-    // 7. TIME / DURATION
-    else if (lower.includes('time') || lower.includes('how long') || lower.includes('timeline') || lower.includes('duration') || lower.includes('deadline')) {
-      responseText = "Timelines depend on project complexity: MVPs and custom websites typically take 2-4 weeks, while complex SaaS platforms or AI integrations take 4-8 weeks. We prioritize fast, milestone-driven execution. What is your ideal target launch date?";
+    // 1. GENERAL KNOWLEDGE & CONCEPT INQUIRIES (ChatGPT / Gemini Mode)
+    if (lower === 'what is ai' || lower.includes('what is artificial intelligence') || lower.includes('explain ai')) {
+      responseText = "Artificial Intelligence (AI) refers to systems designed to mimic human cognitive functions — such as reasoning, learning, pattern recognition, and decision-making. Today, AI powers everything from intelligent chatbots and automated workflows to predictive analytics and autonomous software agents. At Aethora, we leverage AI to automate manual tasks and build smart business applications. Are you interested in implementing AI into your business operations?";
+    } else if (lower.includes('what is saas') || lower.includes('explain saas')) {
+      responseText = "SaaS (Software as a Service) is a cloud-based distribution model where applications are hosted centrally and delivered to users over the internet, typically on a subscription basis. It eliminates the need for manual software installation and maintenance. At Aethora, we architect scalable, multi-tenant SaaS platforms built for security and high user growth. Are you planning to build a SaaS product?";
+    } else if (lower.includes('what is seo') || lower.includes('explain seo')) {
+      responseText = "SEO (Search Engine Optimization) is the practice of optimizing your digital platform's content, technical structure, and authority so search engines like Google rank it higher for relevant user queries. Higher rankings drive organic, high-intent traffic directly to your business. We embed SEO best practices directly into all our web builds. Would you like an SEO check for your current website?";
+    } else if (lower.includes('what is ui') || lower.includes('what is ux') || lower.includes('explain ui/ux')) {
+      responseText = "UI (User Interface) focuses on the visual design, typography, colors, and layout of an app, while UX (User Experience) governs how intuitive, seamless, and efficient it feels for a user to navigate. Combining strong UI and UX maximizes user engagement and conversion rates. We design custom human-centered visual systems in Figma before writing code. Do you need a design refresh for your application?";
+    } else if (lower.includes('what is n8n') || lower.includes('explain n8n')) {
+      responseText = "n8n is an open-source node-based workflow automation platform that allows systems, APIs, and AI models to communicate seamlessly. It enables businesses to automate repetitive tasks like lead processing, CRM updates, and email notifications without custom backend code. We build self-healing n8n automation pipelines for our clients. Would you like to see how n8n can save your team hours of work?";
     }
-    // 8. FALLBACK & GENERAL INQUIRIES
+
+    // 2. AI CHATBOTS & AUTOMATION INQUIRIES
+    else if (lower.includes('chatbot') || lower.includes('ai workflow') || lower.includes('automation') || lower.includes('agent')) {
+      responseText = "We design and deploy intelligent AI chatbots, self-healing automation pipelines, LLM integrations, and custom AI agents. We can integrate them directly into your website, CRM, or internal workflows to handle customer support, lead qualification, and data processing 24/7. What processes are you looking to automate?";
+    }
+
+    // 3. WEBSITE & MOBILE APP DEVELOPMENT
+    else if (lower.includes('website') || lower.includes('web dev') || lower.includes('app') || lower.includes('mobile') || lower.includes('react') || lower.includes('nextjs') || lower.includes('wordpress')) {
+      responseText = "Yes! We engineer modern, high-performance websites and mobile applications built with React, Next.js, and WordPress. All our builds are mobile-first, ultra-responsive, SEO-optimized, and engineered for high conversion rates. What kind of website or app are you looking to build?";
+    }
+
+    // 4. SERVICES & GENERAL CAPABILITIES
+    else if (lower.includes('service') || lower.includes('offer') || lower.includes('what do you do') || lower.includes('capabilities') || lower.includes('build')) {
+      responseText = "At Aethora, we specialize in 5 core digital pillars: Custom Website & Mobile App Development, AI & Workflow Automation, SaaS Product Development, Branding & UI/UX Design, and Digital Transformation. Whether you're a startup or an enterprise, we build scalable digital products tailored to your goals. Which service aligns best with your immediate roadmap?";
+    }
+
+    // 5. PRICING & COST ESTIMATES
+    else if (lower.includes('cost') || lower.includes('price') || lower.includes('pricing') || lower.includes('how much') || lower.includes('rate') || lower.includes('budget') || lower.includes('quote')) {
+      responseText = "Project costs depend on your specific scope, features, and design complexity. We provide transparent, flexible pricing models tailored to your goals. We can schedule a quick 15-minute consultation to review your requirements and provide an exact estimate. Would you like a quick quote for your project?";
+    }
+
+    // 6. PORTFOLIO & WORK EXAMPLES
+    else if (lower.includes('portfolio') || lower.includes('work') || lower.includes('example') || lower.includes('case study') || lower.includes('client') || lower.includes('projects')) {
+      responseText = "We have engineered high-impact digital products across Web Apps, AI Workflow Automation, and SaaS platforms for startups and growing enterprises. You can explore our interactive Tech Stack Explorer on this page, or we can email you detailed case studies. Would you like us to send relevant project samples to your inbox?";
+    }
+
+    // 7. TIMELINE & DURATION
+    else if (lower.includes('time') || lower.includes('how long') || lower.includes('timeline') || lower.includes('duration') || lower.includes('deadline')) {
+      responseText = "Timelines depend on project scope: custom websites and MVPs typically take 2-4 weeks, while complex SaaS platforms or AI integrations take 4-8 weeks. We work with fast, milestone-driven execution. What is your ideal target launch date?";
+    }
+
+    // 8. CONTACT & HIRE / SALES CONVERSION
+    else if (lower.includes('start') || lower.includes('project') || lower.includes('hire') || lower.includes('contact') || lower.includes('email') || lower.includes('consultation') || lower.includes('talk') || lower.includes('meet')) {
+      responseText = "We're currently accepting a select number of new projects to guarantee dedicated senior engineering support. You can share your details via the 'Start Project' guide button at the top, or email us directly at info@aethora.in. Would you like me to open the guided project wizard for you right now?";
+    }
+
+    // 9. DYNAMIC CONVERSATIONAL FALLBACK (Smart & Adaptive)
     else {
-      responseText = "Let me get more details on that for you. In the meantime, feel free to share your specific business requirements or project goals so our team can assist you better. You can also email us directly at info@aethora.in!";
+      responseText = "Could you share a bit more detail about your project or goal so I can give you the most accurate answer? Alternatively, feel free to tell me what you're trying to build, or message our team directly at info@aethora.in!";
     }
 
     appendChatMessage('bot', responseText);
